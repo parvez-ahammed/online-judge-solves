@@ -5,6 +5,7 @@
         "utility": "cpp",
         "xlocinfo": "cpp",
         "xstring": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "xstddef": "cpp"
     }
 }

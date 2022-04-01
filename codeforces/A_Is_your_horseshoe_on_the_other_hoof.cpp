@@ -1,9 +1,6 @@
+#include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
-
-#define fast                      \ios_base::sync_with_stdio(0); \cin.tie(0);                   \cout.tie(0);
-#define pi acos(-1.0)
-#define nl '\n'
 
 /**-------Shortend Library-------*/
 
@@ -35,8 +32,6 @@ using namespace std;
 #define pb(x) push_back(x)
 #define mod 1000000007
 #define precision(x) cout << fixed << setprecision(x)
-#define yes cout << "YES" << nl
-#define no cout << "NO" << nl
 
 /**----data type----*/
 #define ll long long int
@@ -65,24 +60,23 @@ ll powerLog(ll base, ll power)
 
 int main()
 {
-    int n;
-    cin >> n;
-    for (int i = 1; i < n; i++)
-    {
-        if (i % 2 == 0)
-        {
-            cout << "I love that ";
-        }
-        else
-            cout << "I hate that ";
-    }
-    if (n % 2 == 0)
-    {
 
-        cout << "I love it";
+    int s[4];
+
+    cin >> s[0] >> s[1] >> s[2] >> s[3];
+    SortA(s, 4);
+    int shoe =0;
+
+    for (int i = 0 ; i < 3 ; i++)
+    {
+        if (s[i] == s[i+1])
+        {
+            shoe++;
+        }
     }
-    else
-        cout << "I hate it";
+    cout << shoe;
+
+   
 
     return 0;
 }
