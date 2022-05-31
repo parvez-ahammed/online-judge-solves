@@ -1,0 +1,1 @@
+{"name":"Local: problem_b","url":"d:\\contest_programming\\Toph_aust_contest\\problem_b.cpp","tests":[{"id":1653127127091,"input":"4\n3\n6\n8\n12","output":"1 2\n1 3\n3 2\n4 2"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\contest_programming\\Toph_aust_contest\\problem_b.cpp","group":"local","local":true}
