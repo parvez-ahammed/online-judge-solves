@@ -58,66 +58,35 @@ ll powerLog(ll base, ll power)
     return res;
 }
 
+int fib(int n)
+{
+    int  t1 = 0, t2 = 1, nextTerm = 0;
+    for (int i = 1; i <= n; ++i)
+    {
+
+        if (i == 1)
+        {
+            cout << t1 << " ";
+            continue;
+        }
+        if (i == 2)
+        {
+            cout << t2 << " ";
+            continue;
+        }
+        nextTerm = t1 + t2;
+        t1 = t2;
+        t2 = nextTerm;
+
+        cout << nextTerm << " ";
+    }
+}
+
 int main()
 {
-
-    int a, b;
-    cin >> a >> b;
-
-    bool found = false;
-
-    int digit;
-
-    bool is_lucky = true;
-    int number, main_number;
-
-    for (int i = a; i <= b; i++)
-    {
-        // int i = b;
-        is_lucky = true;
-        number = i;
-        main_number = number;
-
-        // cout << i << endl;
-
-        while (number != 0 && is_lucky)
-        {
-
-            if (number >= 10)
-            {
-                digit = number % 10;
-            }
-            else
-            {
-                digit = number;
-            }
-
-            // cout << "Digit value " << digit << endl;
-            number = number / 10;
-            // cout << "i " << i << endl;
-
-            if (digit == 4 || digit == 7)
-            {
-                is_lucky = true;
-            }
-            else
-            {
-                is_lucky = false;
-                break;
-            }
-        }
-
-        if (is_lucky)
-        {
-            found = true;
-            cout << main_number << " ";
-        }
-    }
-
-    if (!found)
-    {
-        cout << "-1" << endl;
-    }
+    int n;
+    cin >> n;
+    fib(n);
 
     return 0;
 }

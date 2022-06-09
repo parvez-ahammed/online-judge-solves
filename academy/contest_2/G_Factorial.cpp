@@ -2,14 +2,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-double factorial(double a)
+double factorial(int n)
 {
-    if (a == 1)
+    long long res = 1;
+    for (int i = 1; i <= n; i++)
     {
-        return 1;
+        res *= i;
     }
-    else
-        return a * factorial(a - 1);
+    return res;
 }
 
 int main()
@@ -17,13 +17,13 @@ int main()
     double n;
     cin >> n;
     double m;
-    double res = 1;
+    long long res = 1;
     while (n--)
     {
         cin >> m;
         if (m == 0)
         {
-            res = 0;
+            res = 1;
         }
         else
         {
@@ -35,3 +35,22 @@ int main()
 
     return 0;
 }
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// int main()
+// {
+// 	int t ;
+// 	cin >> t ;
+// 	while (t--){
+// 		long long x,ans = 1 ;
+// 		cin >> x;
+// 		while(x){
+// 			ans *= x ;
+// 			x--;
+// 		}
+// 		cout << ans << endl;
+// 	}
+
+// 	return 0;
+// }

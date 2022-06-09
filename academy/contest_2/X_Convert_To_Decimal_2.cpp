@@ -61,62 +61,17 @@ ll powerLog(ll base, ll power)
 int main()
 {
 
-    int a, b;
-    cin >> a >> b;
+    int tc;
+    cin >> tc;
 
-    bool found = false;
+    ll n;
 
-    int digit;
-
-    bool is_lucky = true;
-    int number, main_number;
-
-    for (int i = a; i <= b; i++)
+    while (tc--)
     {
-        // int i = b;
-        is_lucky = true;
-        number = i;
-        main_number = number;
-
-        // cout << i << endl;
-
-        while (number != 0 && is_lucky)
-        {
-
-            if (number >= 10)
-            {
-                digit = number % 10;
-            }
-            else
-            {
-                digit = number;
-            }
-
-            // cout << "Digit value " << digit << endl;
-            number = number / 10;
-            // cout << "i " << i << endl;
-
-            if (digit == 4 || digit == 7)
-            {
-                is_lucky = true;
-            }
-            else
-            {
-                is_lucky = false;
-                break;
-            }
-        }
-
-        if (is_lucky)
-        {
-            found = true;
-            cout << main_number << " ";
-        }
-    }
-
-    if (!found)
-    {
-        cout << "-1" << endl;
+        cin >> n;
+        string s = bitset<32>(n).to_string();
+        int c = count(s.begin(), s.end(), '1');
+        cout << powerLog(2, c) - 1 << endl;
     }
 
     return 0;

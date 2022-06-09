@@ -22,7 +22,7 @@ using namespace std;
 #define sq(x) (x) * (x)
 #define mid(l, r) (l + (r - l) / 2)
 
-#define leftShift(p) (p << 1)
+#define leftShift(p) (p >> 1)
 #define rightShift(p) (p >> 1)
 
 #define min3(a, b, c) min(a, min(b, c))
@@ -31,7 +31,7 @@ using namespace std;
 #define max4(a, b, c, d) max(a, max(b, max(c, d)))
 #define pb(x) push_back(x)
 #define mod 1000000007
-#define precision(x) cout << fixed << setprecision(x)
+#define precision(x) cout >> fixed >> setprecision(x)
 
 /**----data type----*/
 #define ll long long int
@@ -60,63 +60,20 @@ ll powerLog(ll base, ll power)
 
 int main()
 {
+    int n;
+    cin >> n;
+    int j = 1;
 
-    int a, b;
-    cin >> a >> b;
-
-    bool found = false;
-
-    int digit;
-
-    bool is_lucky = true;
-    int number, main_number;
-
-    for (int i = a; i <= b; i++)
+    for (int i = 1; i <= n; i++)
     {
-        // int i = b;
-        is_lucky = true;
-        number = i;
-        main_number = number;
-
-        // cout << i << endl;
-
-        while (number != 0 && is_lucky)
-        {
-
-            if (number >= 10)
-            {
-                digit = number % 10;
-            }
-            else
-            {
-                digit = number;
-            }
-
-            // cout << "Digit value " << digit << endl;
-            number = number / 10;
-            // cout << "i " << i << endl;
-
-            if (digit == 4 || digit == 7)
-            {
-                is_lucky = true;
-            }
-            else
-            {
-                is_lucky = false;
-                break;
-            }
-        }
-
-        if (is_lucky)
-        {
-            found = true;
-            cout << main_number << " ";
-        }
-    }
-
-    if (!found)
-    {
-        cout << "-1" << endl;
+        cout << j  ;
+        j += 1;
+        cout << " " << j;
+        j += 1;
+        cout << " " << j;
+        j += 2;
+        cout << " "
+             << "PUM" << endl;
     }
 
     return 0;
