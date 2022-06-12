@@ -61,43 +61,30 @@ ll powerLog(ll base, ll power)
 int main()
 {
 
-    int tc;
-    cin >> tc;
+    long long n, q;
 
-    long long arr[30];
+    cin >> n >> q;
+    int arr[n];
 
-    for (int i = 0; i < 30; i++)
+    for (int i = 0; i < n; i++)
     {
-        arr[i] = powerLog(2, i);
-        // cout << arr[i] << " ";
+        cin >> arr[i];
     }
-    int n;
-    while (tc--)
+
+    SortD(arr, n);
+
+    while (q--)
     {
-        cin >> n;
-         long long sum = 0;
-
-        for (int i = 1; i <= n; i++)
+        int a, b;
+        cin >> a >> b;
+        int sum = 0;
+        for (int i = (a - 1); b > 0; i--, b--)
         {
-            double num = i;
-
-            for (int j = 0; j < 30; j++)
-            {
-                if ( (num / arr[j]) == 1)
-                {
-                    num *= -1;
-                    break;
-                }
-            }
-            cout << endl;
-            //cout << "Adding  = " << num << " " << sum;
-            sum += num;
+            sum += arr[i];
         }
 
         cout << sum << endl;
     }
-
-    // cout << powerLog(2,30);
 
     return 0;
 }

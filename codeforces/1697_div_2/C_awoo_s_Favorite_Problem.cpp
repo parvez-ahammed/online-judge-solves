@@ -63,41 +63,74 @@ int main()
 
     int tc;
     cin >> tc;
-
-    long long arr[30];
-
-    for (int i = 0; i < 30; i++)
-    {
-        arr[i] = powerLog(2, i);
-        // cout << arr[i] << " ";
-    }
-    int n;
     while (tc--)
     {
+        int n;
+
         cin >> n;
-         long long sum = 0;
+        string s, t;
 
-        for (int i = 1; i <= n; i++)
+        string a_b = "ab", b_c = "bc";
+        string b_a = "ba", c_b = "cb";
+
+        cin >> s >> t;
+
+        if (s.compare(t) == 0)
         {
-            double num = i;
 
-            for (int j = 0; j < 30; j++)
+            cout << "YES" << endl;
+        }
+        else if (n == 1 && s != t)
+        {
+            cout << "NO" << endl;
+        }
+        else
+        {
+            int count = 0;
+            // cout << s.find(a_b);
+            while ((s.find(a_b) != -1 || s.find(b_c) != -1) && s != t)
             {
-                if ( (num / arr[j]) == 1)
+
+                if (s.find(a_b) != -1)
                 {
-                    num *= -1;
-                    break;
+                    // for (int i = 0; i < s.length(); i++)
+                    // {
+                    //     if (s.substr(i, a_b.length()) == a_b)
+                    //     {
+                    //         count++;
+                    //     }
+                    // }
+
+                  
+                        s.replace(s.find(a_b), 2, b_a);
+                    
+
+                    // replace_all(s , a_b , b_a);
+
+                    //cout << "REplaced ab " << s << endl;
+                    //  cout << "POSSIBLE";
+                }
+
+                if (s.find(b_c) != -1)
+                {
+
+                    s.replace(s.find(b_c), 2, c_b);
+                   // cout << "REplaced bc " << s << endl;
+                    //  cout << "POSSIBLE";
                 }
             }
-            cout << endl;
-            //cout << "Adding  = " << num << " " << sum;
-            sum += num;
+
+            if (s.compare(t) == 0)
+            {
+
+                cout << "YES" << endl;
+            }
+            else
+            {
+                cout << "NO" << endl;
+            }
         }
-
-        cout << sum << endl;
     }
-
-    // cout << powerLog(2,30);
 
     return 0;
 }

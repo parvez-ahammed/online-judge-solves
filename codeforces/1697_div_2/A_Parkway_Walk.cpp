@@ -62,42 +62,32 @@ int main()
 {
 
     int tc;
+
     cin >> tc;
 
-    long long arr[30];
-
-    for (int i = 0; i < 30; i++)
-    {
-        arr[i] = powerLog(2, i);
-        // cout << arr[i] << " ";
-    }
-    int n;
     while (tc--)
     {
-        cin >> n;
-         long long sum = 0;
+        int n, m;
+        cin >> n >> m;
 
-        for (int i = 1; i <= n; i++)
+        long long sum = 0;
+        int dis;
+
+        for (int i = 0; i < n; i++)
         {
-            double num = i;
-
-            for (int j = 0; j < 30; j++)
-            {
-                if ( (num / arr[j]) == 1)
-                {
-                    num *= -1;
-                    break;
-                }
-            }
-            cout << endl;
-            //cout << "Adding  = " << num << " " << sum;
-            sum += num;
+            cin >> dis;
+            sum += dis;
         }
 
-        cout << sum << endl;
+        if (sum - m <= 0)
+        {
+            cout << 0 << endl;
+        }
+        else if (sum - m > 0)
+        {
+            cout << sum - m << endl;
+        }
     }
-
-    // cout << powerLog(2,30);
 
     return 0;
 }
