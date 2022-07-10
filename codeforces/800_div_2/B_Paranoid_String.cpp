@@ -60,41 +60,36 @@ ll powerLog(ll base, ll power)
 
 int main()
 {
+
     int tc;
     cin >> tc;
+
     while (tc--)
     {
-        long long n;
-        
-        bool found = false;
 
+        string s;
+        int n;
         cin >> n;
-        int arr[n];
-        for (int i = 0; i < n; i++)
+        cin >> s;
+        long long int count = 0;
+        long long int prev= 0;
+        long long int curr = 0;
+        for (long long int i = 1; i < n; i++)
         {
-            cin >> arr[i];
+            prev= i-1;
+            curr = i;
+            if (s[prev] != s[i])
+            {
+                count += i;
+            }
         }
 
-        // for (int i = 0; i < n && !found; i++)
-        // {
+        cout << count +n<<endl;
 
-        //     for (int j = i+1; j < n && !found; j++)
-        //     {
-        //         for (int k = j+1; k < n && !found; k++)
-        //         {
-        //             if (i != j && i != k && j != k && (arr[i] + arr[j] + arr[k]) % 10 == 3)
-        //             {
-        //                 found = true;
-        //             }
-        //         }
-        //     }
-        // }
-
-        if (found)
-            cout << "YES" << endl;
-        else
-            cout << "NO" << endl;
+        
     }
 
     return 0;
 }
+
+    

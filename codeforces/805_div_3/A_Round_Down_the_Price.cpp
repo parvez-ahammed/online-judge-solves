@@ -58,42 +58,25 @@ ll powerLog(ll base, ll power)
     return res;
 }
 
+int count_digit(int number) {
+   return int(log10(number) + 1);
+}
+
 int main()
 {
-    int tc;
+
+    int tc ;
     cin >> tc;
+
     while (tc--)
     {
-        long long n;
-        
-        bool found = false;
+        long long int m;
+        cin >> m;
 
-        cin >> n;
-        int arr[n];
-        for (int i = 0; i < n; i++)
-        {
-            cin >> arr[i];
-        }
+         cout << m- (powerLog(10,count_digit(m)-1)) <<endl;
 
-        // for (int i = 0; i < n && !found; i++)
-        // {
+        //cout << count_digit (m)<<endl;
 
-        //     for (int j = i+1; j < n && !found; j++)
-        //     {
-        //         for (int k = j+1; k < n && !found; k++)
-        //         {
-        //             if (i != j && i != k && j != k && (arr[i] + arr[j] + arr[k]) % 10 == 3)
-        //             {
-        //                 found = true;
-        //             }
-        //         }
-        //     }
-        // }
-
-        if (found)
-            cout << "YES" << endl;
-        else
-            cout << "NO" << endl;
     }
 
     return 0;

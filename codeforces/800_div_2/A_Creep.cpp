@@ -60,40 +60,60 @@ ll powerLog(ll base, ll power)
 
 int main()
 {
+
     int tc;
     cin >> tc;
+
     while (tc--)
     {
-        long long n;
-        
-        bool found = false;
+        int a, b;
+        cin >> a >> b;
 
-        cin >> n;
-        int arr[n];
+        int n = a + b;
+
+        string s;
+
+        int diff_min = abs(a - b);
+
+        int one_added = 0;
+        int zeroes_added = 0;
+
         for (int i = 0; i < n; i++)
+
         {
-            cin >> arr[i];
+            int count1 = count(s.begin(), s.end(), '1');
+            int count0 = count(s.begin(), s.end(), '0');
+
+            int curr_diff = abs(count1 - count0);
+
+            if (curr_diff >= diff_min && count0 >= count1)
+            {
+
+                // cout << "Current diff " << curr_diff << "diff_min " << diff_min << endl;
+                s.push_back('1');
+                one_added++;
+            }
+            else if (zeroes_added < a)
+            {
+                // cout << "Current diff " << curr_diff << "diff_min " << diff_min << endl;
+                s.push_back('0');
+                zeroes_added++;
+            }
+            else
+            {
+                s.push_back('1');
+                one_added++;
+            }
         }
 
-        // for (int i = 0; i < n && !found; i++)
+        // for (int i = 0; i < (a + b); i++)
         // {
-
-        //     for (int j = i+1; j < n && !found; j++)
-        //     {
-        //         for (int k = j+1; k < n && !found; k++)
-        //         {
-        //             if (i != j && i != k && j != k && (arr[i] + arr[j] + arr[k]) % 10 == 3)
-        //             {
-        //                 found = true;
-        //             }
-        //         }
-        //     }
+        //     cout << arr[i];
         // }
 
-        if (found)
-            cout << "YES" << endl;
-        else
-            cout << "NO" << endl;
+        cout << s;
+
+        cout << endl;
     }
 
     return 0;
