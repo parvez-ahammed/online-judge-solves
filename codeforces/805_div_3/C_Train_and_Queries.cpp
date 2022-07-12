@@ -70,37 +70,37 @@
 //     }
 // }
 
-// int main()
-// {
-//     int tc;
+int main()
+{
+    int tc;
 
-//     cin >> tc;
-//     while (tc--)
-//     {
-//         int len;
-//         int station;
+    cin >> tc;
+    while (tc--)
+    {
+        int len;
+        int station;
 
-//         cin >> len >> station;
-//         vector<int> v;
-//         int val;
-//         int arr[len];
+        cin >> len >> station;
+        vector<int> v;
+        int val;
+        int arr[len];
 
-//         for (int i = 0; i < len; i++)
+        for (int i = 0; i < len; i++)
 
-//         {
-//             cin >> val;
-//             arr[i] = val;
+        {
+            cin >> val;
+            arr[i] = val;
 
-//             v.push_back(val);
-//         }
+            v.push_back(val);
+        }
 
-//         vector<vector<int>> vv;
+        vector<vector<int>> vv;
 
-//         while (!v.empty())
-//         {
-//             vv.push_back(v);
-//             v.erase(v.begin());
-//         }
+        while (!v.empty())
+        {
+            vv.push_back(v);
+            v.erase(v.begin());
+        }
 
 //         // cout << vv.size() << endl;
 
