@@ -2,11 +2,11 @@
 
 This repo contains solutions to the problems in the different platforms. like 
 
->> codeforces
->> hackerrank
->> leetcode
->> topcoder
+>> codeforces<br>
+>> hackerrank<br>
+>> leetcode<br>
+>> topcoder<br>
 >> etc.
 
-[]: # Language: markdown
-[]: # Path: readme.md
+
+    
