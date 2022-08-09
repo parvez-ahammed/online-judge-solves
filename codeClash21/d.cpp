@@ -29,12 +29,17 @@ void push_into_stack()
     int curr_sum;
     v_int curr_route;
     int value_indice;
-    bool first_push = true;
+    
     bool found = false;
     while (!s.empty())
     {
+        int number_of_1 = count(s.top().second.second.second.begin(), s.top().second.second.second.end(), 1);
 
-        if ((s.top().first < sum_wanted && s.top().second.second.first != 0) || first_push)
+        if (number_of_1 > 4)
+        {
+            s.pop();
+        }
+        else if ((s.top().first < sum_wanted && s.top().second.second.first != 0) )
         {
             curr_key = s.top().first;
             curr_level = s.top().second.first;
@@ -47,12 +52,11 @@ void push_into_stack()
             curr_key += user_input[curr_level].first;
             curr_route[value_indice] = 1;
             s.push(mp(curr_key, mp(curr_level + 1, mp(curr_sum, curr_route))));
-            first_push = false;
+           
         }
         else if (s.top().first == sum_wanted)
         {
 
-            int number_of_1 = count(s.top().second.second.second.begin(), s.top().second.second.second.end(), 1);
             if (number_of_1 == 4)
             {
                 cout << "Labeo bross, labeo !!" << endl;
@@ -87,7 +91,7 @@ int main()
         sum_of_all += x;
         user_input.push_back(make_pair(x, i));
     }
-    
+
     sort(user_input.begin(), user_input.end());
     minimum_possible_sum = user_input[0].first;
 
