@@ -4,7 +4,7 @@ using namespace std;
 
 /**-------Shortend Library-------*/
 
-#define vi queue<int>
+#define vi vector<int>
 #define mii map<int, int>
 
 #define ff first
@@ -61,78 +61,53 @@ ll powerLog(ll base, ll power)
 int main()
 {
 
-    int n1, n2, n3;
-    cin >> n1 >> n2 >> n3;
+    int n;
+    cin >> n;
 
-    ll sum1 = 0;
-    ll sum2 = 0;
-    ll sum3 = 0;
-    vi v1;
-    vi v2;
-    vi v3;
-    int temp;
-    for (int i = 0; i < n1; i++)
+    ll sum_of_all = (((n * n)) + n) / 2;
 
+    cout << sum_of_all << endl;
+
+    if (sum_of_all % 2 == 1)
     {
-        cin >> temp;
-        v1.push(temp);
-        sum1 += temp;
+        cout << "NO" << endl;
     }
-
-    for (int i = 0; i < n2; i++)
-
-    {
-        cin >> temp;
-        v2.push(temp);
-        sum2 += temp;
-    }
-
-    for (int i = 0; i < n3; i++)
-
-    {
-        cin >> temp;
-        v3.push(temp);
-        sum3 += temp;
-    }
-
-    ll sumv;
-
-    if (sum1 == sum2 && sum1 == sum3 && sum3 == sum2)
-        cout << sum1 << endl;
     else
     {
 
-        int i = 0;
-        while (true)
+        ll wanted_sum = sum_of_all / 2;
+
+        vi v1;
+        vi v2;
+        cout << "YES" << endl;
+        for (int i = n; i >= 1; i--)
         {
-            if (sum1 == sum2 && sum1 == sum3 && sum3 == sum2)
-                break;
+            if (wanted_sum - i >= 0)
+
+            {
+                wanted_sum -= i;
+                v1.push_back(i);
+            }
             else
             {
-                sumv = max3(sum1, sum2, sum3);
-
-                if (sumv == sum1)
-                {
-                    sumv -= v1.front();
-                    sum1 -= v1.front();
-                    v1.pop();
-                }
-                else if (sumv == sum2)
-                {
-                    sumv -= v2.front();
-                    v2.pop();
-                    sum2 -= v2.front();
-                }
-                else if (sumv == sum3)
-                {
-                    sumv -= v3.front();
-                    sum3 -= v3.front();
-                    v3.pop();
-                }
+                v2.push_back(i);
             }
         }
 
-        cout << sum1 << endl;
+        cout << v1.size() << endl;
+        Sort(v1);
+        // for (int i = 0; i < v1.size(); i++)
+        // {
+        //     cout << v1[i] << " ";
+        // }
+        // cout << endl;
+
+        cout << v2.size() << endl;
+        // Sort(v2);
+        // for (int i = 0; i < v2.size(); i++)
+        // {
+        //     cout << v2[i] << " ";
+        // }
     }
 
     return 0;
