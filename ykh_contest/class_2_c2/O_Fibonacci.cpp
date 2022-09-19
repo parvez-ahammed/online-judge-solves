@@ -13,35 +13,22 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 
 void solve()
 {
+    ll x = 0, y = 1, z = 0;
 
-    ll n;
-    cin >> n;
-
+    ll n = 60;
     vector<ll> v(n, 0);
     for (int i = 0; i < n; i++)
-        cin >> v[i];
-    ll count = n;
-
-    ll size = (n * (n + 1)) / 2;
-
-    vector<ll> maxs;
-
-    for (int i = 0; i < n; i++)
-        maxs.push_back(v[i]);
-    ll current_max;
-    for (int i = 0; i < n; i++)
     {
-        current_max = v[i];
-        for (int j = i; j < n - 1; j++)
-        {
-            current_max = max(current_max, v[j + 1]);
-            maxs.push_back(current_max);
-        }
+        v[i] = x;
+        z = x + y;
+        x = y;
+        y = z;
     }
-    for (int i = 0; i < maxs.size(); i++)
-        cout << maxs[i] << " ";
 
-    cout << "\n";
+    ll m;
+    cin >> m;
+
+    cout << v[m - 1] << "\n";
 }
 
 int32_t main()
@@ -50,7 +37,7 @@ int32_t main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     int tc = 1;
-    cin >> tc;
+    // cin >> tc;
     while (tc--)
     {
         solve();

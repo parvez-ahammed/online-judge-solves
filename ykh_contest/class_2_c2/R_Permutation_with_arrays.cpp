@@ -16,32 +16,35 @@ void solve()
 
     ll n;
     cin >> n;
-
-    vector<ll> v(n, 0);
-    for (int i = 0; i < n; i++)
-        cin >> v[i];
-    ll count = n;
-
-    ll size = (n * (n + 1)) / 2;
-
-    vector<ll> maxs;
+    vector<ll> v1(n, 0), v2(n, 0);
 
     for (int i = 0; i < n; i++)
-        maxs.push_back(v[i]);
-    ll current_max;
+        cin >> v1[i];
+
+    Sort(v1);
+
+    for (int i = 0; i < n; i++)
+        cin >> v2[i];
+
+    Sort(v2);
+
+    bool possible = true;
+
     for (int i = 0; i < n; i++)
     {
-        current_max = v[i];
-        for (int j = i; j < n - 1; j++)
+        if (v1[i] != v2[i])
         {
-            current_max = max(current_max, v[j + 1]);
-            maxs.push_back(current_max);
+            possible = false;
+            break;
         }
     }
-    for (int i = 0; i < maxs.size(); i++)
-        cout << maxs[i] << " ";
 
-    cout << "\n";
+    if (possible)
+        cout << "yes"
+             << "\n";
+    else
+        cout << "no"
+             << "\n";
 }
 
 int32_t main()
@@ -50,7 +53,7 @@ int32_t main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     int tc = 1;
-    cin >> tc;
+    // cin >> tc;
     while (tc--)
     {
         solve();

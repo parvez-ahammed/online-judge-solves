@@ -20,28 +20,21 @@ void solve()
     vector<ll> v(n, 0);
     for (int i = 0; i < n; i++)
         cin >> v[i];
+
     ll count = n;
 
-    ll size = (n * (n + 1)) / 2;
-
-    vector<ll> maxs;
-
-    for (int i = 0; i < n; i++)
-        maxs.push_back(v[i]);
-    ll current_max;
     for (int i = 0; i < n; i++)
     {
-        current_max = v[i];
-        for (int j = i; j < n - 1; j++)
+        for (int j = i; j < n-1; j++)
         {
-            current_max = max(current_max, v[j + 1]);
-            maxs.push_back(current_max);
+            if (v[j] < v[j + 1])
+               count++;
+            else
+                break;
         }
     }
-    for (int i = 0; i < maxs.size(); i++)
-        cout << maxs[i] << " ";
 
-    cout << "\n";
+    cout << count << "\n";
 }
 
 int32_t main()
