@@ -13,23 +13,27 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 
 void solve()
 {
+
     ll n, m;
     cin >> n >> m;
-
-    vector<int> v(m, 0);
-
-    int temp;
-
-    for (int i = 0; i < n; i++)
+    ll size = n * m;
+    vector<ll> v(size, 0);
+    ll temp;
+    for (int i = 0; i < size; i++)
     {
         cin >> temp;
-        v[temp - 1] += 1;
+        v[i] = temp;
     }
-
-    for (int i = 0; i < v.size(); i++)
-    {
-        cout << v[i] << "\n";
-    }
+    ll x;
+    cin >> x;
+    bool possible = false;
+    Sort(v);
+    if (binary_search(v.begin(), v.end(), x))
+        cout << "will not take number"
+             << "\n";
+    else
+        cout << "will take number"
+             << "\n";
 }
 
 int32_t main()

@@ -13,23 +13,37 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 
 void solve()
 {
+
     ll n, m;
+
     cin >> n >> m;
-
-    vector<int> v(m, 0);
-
-    int temp;
+    vector<ll> v1, v2;
+    ll temp;
 
     for (int i = 0; i < n; i++)
     {
         cin >> temp;
-        v[temp - 1] += 1;
+        v1.push_back(temp);
+    }
+    for (int i = 0; i < m; i++)
+    {
+        cin >> temp;
+        v2.push_back(temp);
     }
 
-    for (int i = 0; i < v.size(); i++)
+    for (int i = 0; i < n; i++)
     {
-        cout << v[i] << "\n";
+        if (v1[i] == v2[0])
+            v2.erase(v2.begin());  
     }
+
+ 
+    if (v2.size() == 0)
+        cout << "YES"
+             << "\n";
+    else
+        cout << "NO"
+             << "\n";
 }
 
 int32_t main()

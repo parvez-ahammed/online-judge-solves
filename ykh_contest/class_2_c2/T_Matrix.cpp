@@ -13,23 +13,31 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 
 void solve()
 {
-    ll n, m;
-    cin >> n >> m;
+    int n;
+    cin >> n;
 
-    vector<int> v(m, 0);
-
-    int temp;
+    ll primary_sum = 0, sec_sum = 0;
+    ll temp;
 
     for (int i = 0; i < n; i++)
     {
-        cin >> temp;
-        v[temp - 1] += 1;
+        for (int j = 0; j < n; j++)
+        {
+            cin >> temp;
+            if (i == j)
+                primary_sum += temp;
+            if ((n - i-1) == j)
+            {
+                // cout << temp << endl;
+                sec_sum += temp;
+            }
+        }
     }
 
-    for (int i = 0; i < v.size(); i++)
-    {
-        cout << v[i] << "\n";
-    }
+    // cout << primary_sum << endl;
+    // cout << sec_sum << endl;
+
+    cout << abs(primary_sum - sec_sum) << "\n";
 }
 
 int32_t main()

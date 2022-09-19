@@ -1,93 +1,36 @@
-#include <iostream>
 #include <bits/stdc++.h>
+#define valid(nx, ny) nx >= 0 && nx < n &&ny >= 0 && ny < m
 using namespace std;
 
-/**-------Shortend Library-------*/
-
-#define vi vector<int>
-#define mii map<int, int>
-
-#define ff first
-#define ss second
-#define all(a) a.begin(), a.end()
-#define Sort(x) sort(x.begin(), x.end())
-#define SortR(x) sort(x.begin(), x.end(), greater<int>())
-#define Reverse(x) reverse(x.begin(), x.end())
-
-#define SortA(ar, s) sort(ar, ar + s)
-#define SortD(ar, s) sort(ar, ar + s, greater<int>())
-
-#define gcd(a, b) __gcd(a, b)
-#define lcm(a, b) (a * (b / gcd(a, b)))
-#define sq(x) (x) * (x)
-#define mid(l, r) (l + (r - l) / 2)
-
-#define leftShift(p) (p << 1)
-#define rightShift(p) (p >> 1)
-
-#define min3(a, b, c) min(a, min(b, c))
-#define min4(a, b, c, d) min(a, min(b, min(c, d)))
-#define max3(a, b, c) max(a, max(b, c))
-#define max4(a, b, c, d) max(a, max(b, max(c, d)))
-#define pb(x) push_back(x)
-#define mod 1000000007
-#define precision(x) cout << fixed << setprecision(x)
-
-/**----data type----*/
-#define ll long long int
-#define llu unsigned long long int
-
-/**----Functions to use----**/
-
-ll powerLog(ll base, ll power)
-{
-    ll res = 1;
-    while (power)
-    {
-        if (power % 2)
-        {
-            res *= base;
-            power--;
-        }
-        else
-        {
-            base *= base;
-            power /= 2;
-        }
-    }
-    return res;
-}
+int fx[] = {+0, +0, +1, -1, -1, +1, -1, +1};
+int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 
 int main()
 {
     int n, m;
     cin >> n >> m;
-
-    char arr[n][m];
-
+    char a[n][m];
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
-        {
-            cin >> arr[i][j];
-        }
+            cin >> a[i][j];
     }
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < m; j++)
-        {
-            cout << arr[i][j];
-        }
-        cout << endl;
-    }
-
     int x, y;
+    bool token = true;
     cin >> x >> y;
-    x -= 1;
-    y -= 1;
-
-    vector<pair<int, int>> neighbours;
-   
-
+    for (int i = 0; i < 8; i++)
+    {
+        int nx = x - 1 + fx[i];
+        int ny = y - 1 + fy[i];
+        if (valid(nx, ny) && a[nx][ny] != 'x')
+        {
+            token = false;
+            break;
+        }
+    }
+    if (token)
+        cout << "yes\n";
+    else
+        cout << "no\n";
     return 0;
 }
