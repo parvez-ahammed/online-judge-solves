@@ -13,14 +13,28 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 
 void solve()
 {
-
-    string str1, str2;
-    cin >> str1 >> str2;
-
-    cout << str1.size() << " " << str2.size() << "\n";
-    cout << str1 << str2 << "\n";
-    swap(str1[0], str2[0]);
-    cout << str1 << " " << str2 << "\n";
+    string str;
+    cin >> str;
+    if (str.size() == 1)
+    {
+        cout << str << '\n';
+    }
+    else
+    {
+        string result = "", x, y;
+        vector<string> v;
+        for (int i = 0; i < str.size() - 1; i++)
+        {
+            x = str.substr(0, i + 1);
+            y = str.substr(i + 1, str.size() - 1 - i);
+            Sort(x);
+            Sort(y);
+            result = x + y;
+            v.push_back(result);
+        }
+        Sort(v);
+        cout << v.front() << '\n';
+    }
 }
 
 int32_t main()

@@ -13,14 +13,16 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 
 void solve()
 {
+    string str, s1 = "010", s2 = "101";
+    cin >> str;
+  
 
-    string str1, str2;
-    cin >> str1 >> str2;
-
-    cout << str1.size() << " " << str2.size() << "\n";
-    cout << str1 << str2 << "\n";
-    swap(str1[0], str2[0]);
-    cout << str1 << " " << str2 << "\n";
+    if ((str.find(s1) != string::npos) || (str.find(s2) != string::npos))
+        cout << "Good"
+             << "\n";
+    else
+        cout << "Bad"
+             << "\n";
 }
 
 int32_t main()
@@ -29,7 +31,7 @@ int32_t main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     int tc = 1;
-    // cin >> tc;
+    cin >> tc;
     while (tc--)
     {
         solve();

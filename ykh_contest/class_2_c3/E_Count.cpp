@@ -13,14 +13,14 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 
 void solve()
 {
+    string str;
 
-    string str1, str2;
-    cin >> str1 >> str2;
+    cin >> str;
+    ll sum = 0;
+    for (int i = 0; i < str.size(); i++)
+        sum += str[i] - '0';
 
-    cout << str1.size() << " " << str2.size() << "\n";
-    cout << str1 << str2 << "\n";
-    swap(str1[0], str2[0]);
-    cout << str1 << " " << str2 << "\n";
+    cout << sum << "\n";
 }
 
 int32_t main()

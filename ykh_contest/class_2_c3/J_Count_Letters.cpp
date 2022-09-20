@@ -14,13 +14,16 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 void solve()
 {
 
-    string str1, str2;
-    cin >> str1 >> str2;
+    string str;
+    cin >> str;
+    vector<int> v(26, 0);
 
-    cout << str1.size() << " " << str2.size() << "\n";
-    cout << str1 << str2 << "\n";
-    swap(str1[0], str2[0]);
-    cout << str1 << " " << str2 << "\n";
+    for (int i = 0; i < str.size(); i++)
+        v[str[i] - 97]++;
+
+    for (int i = 0; i < v.size(); i++)
+        if (v[i] != 0)
+            cout<< char (i+97)<< " : " << v[i] << endl;
 }
 
 int32_t main()

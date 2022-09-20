@@ -13,14 +13,18 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 
 void solve()
 {
+    string str, str2;
 
-    string str1, str2;
-    cin >> str1 >> str2;
+    cin >> str;
+    str2 = str;
+    reverse(str.begin(), str.end());
 
-    cout << str1.size() << " " << str2.size() << "\n";
-    cout << str1 << str2 << "\n";
-    swap(str1[0], str2[0]);
-    cout << str1 << " " << str2 << "\n";
+    if (str == str2)
+        cout << "YES"
+             << "\n";
+    else
+        cout << "NO"
+             << "\n";
 }
 
 int32_t main()

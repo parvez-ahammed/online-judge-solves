@@ -13,14 +13,20 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 
 void solve()
 {
-
     string str1, str2;
     cin >> str1 >> str2;
+    string new_str = "";
 
-    cout << str1.size() << " " << str2.size() << "\n";
-    cout << str1 << str2 << "\n";
-    swap(str1[0], str2[0]);
-    cout << str1 << " " << str2 << "\n";
+    while (!str1.empty() && !str2.empty())
+    {
+        new_str += str1[0];
+        new_str += str2[0];
+        str1.erase(str1.begin());
+        str2.erase(str2.begin());
+    }
+    new_str += str1;
+    new_str += str2;
+    cout << new_str << "\n";
 }
 
 int32_t main()
@@ -29,7 +35,7 @@ int32_t main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     int tc = 1;
-    // cin >> tc;
+    cin >> tc;
     while (tc--)
     {
         solve();
