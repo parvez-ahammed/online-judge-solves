@@ -8,6 +8,8 @@
         "ostream": "cpp",
         "xutility": "cpp",
         "utility": "cpp",
-        "initializer_list": "cpp"
+        "initializer_list": "cpp",
+        "type_traits": "cpp",
+        "iterator": "cpp"
     }
 }
