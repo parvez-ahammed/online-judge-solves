@@ -18,12 +18,12 @@ void solve()
 
     cin >> n;
     vector<pair<long long, long long>> a;
-    vector<pair<long long, long long>> a0;
-    vector<pair<long long, long long>> a1;
-
+    vector<long long> sum0v, sum1v;
     long long temp;
 
-    long long sum0 = 0, sum1 = 0, totalSum = 0;
+    long long sum0 = 0, sum1 = 0, totalSum = 0, zeros = 0, ones = 0;
+
+    long long minel = 10e9;
 
     for (int i = 0; i < n; i++)
     {
@@ -33,46 +33,28 @@ void solve()
     for (int i = 0; i < n; i++)
     {
         cin >> temp;
+        temp < minel ? minel = temp : temp = temp;
         a[i].first = temp;
         if (a[i].second == 0)
         {
             sum0 += temp;
-            a0.push_back(a[i]);
+            zeros += 1;
+            sum0v.size() == 0 ? sum0v.push_back(temp) : sum0v.push_back(sum0v[sum0v.size() - 1] + temp);
         }
         else
         {
             sum1 += temp;
-            a1.push_back(a[i]);
+            ones += 1;
+            sum1v.size() == 0 ? sum1v.push_back(temp) : sum1v.push_back(sum1v[sum1v.size() - 1] + temp);
         }
     }
-    if (a0.size() == 0)
-        cout << sum1 << "\n";
-    else if (a1.size() == 0)
-        cout << sum0 << "\n";
+    if (zeros == 0 || ones == 0)
+        zeros == 0 ? cout << sum1 << "\n" : cout << sum0 << "\n";
     else
     {
-        Sort(a0);
-        Sort(a1);
         totalSum += ((sum0 + sum1) * 2);
-        if (a0.size() == a1.size())
-        {
-            a0[0].first < a1[0].first ? totalSum -= a0[0].first : totalSum -= a1[0].first;
-        }
-        else
-        {
-            if (a0.size() < a1.size())
-            {
-                totalSum -= a1[0].first;
-                for (int i = 1; i < a1.size() - a0.size(); i++)
-                    totalSum -= a1[i].first;
-            }
-            else
-            {
-                totalSum -= a0[0].first;
-                for (int i = 1; i < a0.size() - a1.size(); i++)
-                    totalSum -= a0[i].first;
-            }
-        }
+        zeros == ones ? totalSum -= minel : zeros < ones ? totalSum -= sum1v[ones - zeros - 1]
+                                                         : totalSum -= sum0v[zeros - ones - 1];
         cout << totalSum << "\n";
     }
 }
