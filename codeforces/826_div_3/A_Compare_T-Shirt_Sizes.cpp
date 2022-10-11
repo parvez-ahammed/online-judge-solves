@@ -12,27 +12,6 @@ using namespace std;
 int fx[] = {+0, +0, +1, -1, -1, +1, -1, +1};
 int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 
-// C++ program of the above approach
-#include <algorithm>
-#include <iostream>
-
-string set_string(string a)
-{
-    if (a[a.size() - 1] == 'S')
-        a[a.size() - 1] = '1';
-    else if (a[a.size() - 1] == 'M')
-        a[a.size() - 1] = '2';
-    else
-        a[a.size() - 1] = '3';
-    return a;
-}
-
-string removeChar(string s, char c)
-{
-
-    string new_str = "";
-}
-
 void greater_v()
 {
     cout << ">"
@@ -58,47 +37,13 @@ void solve()
     int temp = 0;
 
     int a_x = a.size() - 1, b_x = b.size() - 1;
-
     a = a[a.size() - 1];
     b = b[b.size() - 1];
-
-    // cout << a << " " << b << "\n";
     if (a == b)
-    {
-        if (a == "L")
-        {
-            if (a_x > b_x)
-                greater_v();
-            else if (a_x == b_x)
-                equal();
-            else
-                smaller();
-        }
-
-        else
-        {
-            if (a_x < b_x)
-                greater_v();
-            else if (a_x == b_x)
-                equal();
-            else
-                smaller();
-        }
-    }
-
+        (a == "L") ? ((a_x > b_x) ? greater_v() : ((a_x == b_x) ? equal() : smaller())) : (a_x < b_x) ? greater_v()
+                                                                                                      : ((a_x == b_x) ? equal() : smaller());
     else
-    {
-        if (a == "L" && (b == "S" || b == "M"))
-            greater_v();
-        else if (a == "S" && (b == "L" || b == "M"))
-            smaller();
-        else if (a == "M" && b == "L")
-            smaller();
-        else if (a == "M" && b == "S")
-            greater_v();
-        else
-            cout << "yet" << endl;
-    }
+        (a == "L" && (b == "S" || b == "M")) || (a == "M" && b == "S") ? greater_v() : smaller();
 }
 
 int32_t main()
