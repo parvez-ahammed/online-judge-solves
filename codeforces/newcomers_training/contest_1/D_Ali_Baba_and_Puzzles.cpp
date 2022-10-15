@@ -14,14 +14,13 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 
 void solve()
 {
-    llu a, b, c, k;
-    cin >> a >> b >> c >> k;
+    ll a, b, c, d;
+    cin >> a >> b >> c >> d;
 
-    if ( a+b+c == k  || a+b*c == k || a+b-c == k  || a-b-c == k  || a-b+c == k || a-b*c == k || a*b*c == k|| a*b+c == k || a*b-c == k  )
-    cout << "YES" << "\n";
-    else 
-    cout << "NO" << "\n";
-
+    (a + (b * c) == d || a + b - c == d || a - b + c == d || a - (b * c) == d || a * b + c == d || a * b - c == d) ? cout << "YES"
+                                                                                                                          << "\n"
+                                                                                                                   : cout << "NO"
+                                                                                                                          << "\n";
 }
 
 int32_t main()
