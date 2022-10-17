@@ -16,19 +16,44 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 void solve()
 {
 
-    ll n;
+    ll n, i, x, cnt, need, ans;
     cin >> n;
-    vector<int> v(n, 0);
-    ll product = 1;
+    need = n;
+    ans = 0;
 
-    for (int i = 0; i < n; i++)
+    for (i = 0; i < n; ++i)
     {
-        cin >> v[i];
-        cout << v[i] << " ";
-
-        product *= v[i];
+        cin >> x;
+        while (x % 2 == 0)
+        {
+            x /= 2;
+            need -= 1;
+        }
     }
-    cout << endl;
+
+    vector<ll> con(n);
+    for (i = 0; i < n; ++i)
+    {
+        x = i + 1;
+        cnt = 0;
+        while (x % 2 == 0)
+        {
+            x /= 2;
+            ++cnt;
+        }
+        con[i] = cnt;
+    }
+    SortR(con);
+
+    for (i = 0; i < n; ++i)
+    {
+        if (need <= 0)
+            break;
+        ans += 1;
+        need -= con[i];
+    }
+    need > 0 ? ans = -1 : ans = ans;
+    cout << ans << endl;
 }
 
 int32_t main()
