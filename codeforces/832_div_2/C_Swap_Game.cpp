@@ -17,10 +17,9 @@ void solve()
 {
     ll n;
     cin >> n;
-    vector<ll> v;
     ll temp;
 
-    int first = 0;
+    ll first = 0;
     cin >> first;
     priority_queue<ll> pq;
     for (int i = 1; i < n; i++)
@@ -28,24 +27,8 @@ void solve()
         cin >> temp;
         pq.push(-temp);
     }
-
-    int moves = 0;
-
-    
-    for (int i = 0;; i++)
-    {
-
-        first -= 1;
-        int second = pq.top() * -1;
-        swap(first, second);
-        pq.push(first * -1);
-        first = second;
-        if (first == 0)
-            break;
-        moves++;
-    }
-
-     moves % 1 == 1 ? cout << "Alice" << endl : cout << "Bob" << endl;
+    ll second = pq.top() * -1;
+    second < first  ? cout << "Alice" << endl : cout << "Bob" << endl;
 }
 
 int32_t main()
