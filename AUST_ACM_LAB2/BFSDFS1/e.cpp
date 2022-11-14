@@ -16,6 +16,10 @@ int dy[] = {-1, 1, 1, -1, 2, -2, 2, -2};
 vector < int > getVector(int query, vector < vector <int > > vv,vector< int > color )
 {
 
+
+
+    vector < int > color_v = color;
+
     queue< pair < int, int> > q ;
     q.push (make_pair(query,0));
 
@@ -40,9 +44,14 @@ vector < int > getVector(int query, vector < vector <int > > vv,vector< int > co
     return color;
 }
 
-void solve(int n){
-    vector < vector < int > > vv(1000, vector< int > (1,0));
-    vector < int > color ( 1000, 0);
+void solve(int n)
+
+
+
+{
+
+    vector < vector <int > > vv(101, vector< int > (1,0));
+    vector < int > color ( 101, 0);
 
     for ( int i = 0 ; i < n; i++)
     {
@@ -54,7 +63,6 @@ void solve(int n){
         int des ;
         while (cin>> des)
         {
-            color[des] = 2;
             if (des == 0)
                 break;
             else
@@ -96,6 +104,8 @@ int32_t main()
 {
 
     int tc = 1;
+
+
     while (cin >> tc)
     {
         if (tc== 0)
