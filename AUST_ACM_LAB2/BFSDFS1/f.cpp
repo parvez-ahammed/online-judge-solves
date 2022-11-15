@@ -52,12 +52,21 @@ int get_area (int src_x, int src_y, vector <string > vv)
     vector < vector < int > > pp (row+ 1, vector <int >(col+1, 0));
 
     int area = 0 ;
-   
+    // cout << "INCOMING GRID IS " << endl;
+    //for (int i = 0 ; i < vv.size() ;i++)
+    //{
+
+    // cout << vv[i] <<endl;
+    // }
+    // cout << endl;
+
 
     while (!q.empty())
     {
         int srcX = q.front().first;
         int srcY =  q.front().second;
+
+        //cout << "FOR " << srcX << srcY << "   ADDDING  "<<endl;
         q.pop();
 
 
@@ -66,13 +75,14 @@ int get_area (int src_x, int src_y, vector <string > vv)
 
             int adj_x  = srcX + dx[i];
             int adj_y = srcY + dy[i] ;
+//cout << adj_x << adj_y << endl;
             if ( isValid(adj_x, adj_y,row, col))
             {
 
-                
+                //cout << adj_x << adj_y<< endl;
                 if (vv[adj_x][adj_y] == 'W')
                 {
-                
+                    //cout << adj_x << adj_y << endl;
 
                     if (pp[adj_x][adj_y] == 0)
                     {
@@ -85,6 +95,8 @@ int get_area (int src_x, int src_y, vector <string > vv)
 
         }
 
+        //cout << "NEW CHILD ADDING " << endl;
+
     }
 
     return area;
@@ -93,9 +105,6 @@ int get_area (int src_x, int src_y, vector <string > vv)
 int32_t main()
 {
 
-
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
 
     int tc = 1;
     cin >> tc;
@@ -155,8 +164,7 @@ int32_t main()
 
         }
 
- 
- cout << endl;
+
 
 
     }
@@ -168,4 +176,22 @@ int32_t main()
     return 0;
 }
 
+
+1
+LLLLLLLLL
+LLWWLLWLL
+LWWLLLLLL
+LWWWLWWLL
+LLLWWWLLL
+LLLLLLLLL
+LLLWWLLWL
+LLWLWLLLL
+LLLLLLLLL
+3 2
+7 5
+
+LLWW 
+WWLL 
+1 3
+2 2
 
