@@ -1,0 +1,2 @@
+foo = gets 
+puts foo
