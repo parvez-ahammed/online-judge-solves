@@ -1,1 +1,0 @@
-{"name":"Local: problem_k","url":"d:\\contest_programming\\Toph_aust_contest\\problem_k.cpp","tests":[{"id":1653137155303,"input":"1\n4 3\n1 2\n1 4\n1 3","output":"Case #1: The desired island is 1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\contest_programming\\Toph_aust_contest\\problem_k.cpp","group":"local","local":true}
