@@ -2,6 +2,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
+
 /**-------Shortend Library-------*/
 
 #define vi vector<int>
