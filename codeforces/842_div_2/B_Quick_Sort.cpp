@@ -41,6 +41,7 @@ void solve()
         }
     }
 
+
     if (sorted == n)
         cout << 0 << endl;
     else
