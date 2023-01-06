@@ -15,39 +15,27 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 
 void solve()
 {
-    ll n, k;
+    int n, k;
     cin >> n >> k;
 
-    vector<int> v;
-    int temp;
+    vector<int> v(n);
+    int temp, pos = 1;
     int sorted = 0;
-    bool found_1 = false;
-    int rel_pos = 0;
 
-    for (int i = 1; i <= n; i++)
+    for (int i = 0; i < n; i++)
     {
-        cin >> temp;
-
-        if (temp == 1)
-        {
-            found_1 = true;
-            rel_pos = i;
-        }
-
-        if (found_1)
-        {
-            if (temp - 1 == (i - rel_pos))
-                sorted++;
-        }
+        cin >> v[i];
+        if (v[i] == pos)
+            pos++;
     }
 
+    int unsorted = n - pos + 1;
 
-    if (sorted == n)
-        cout << 0 << endl;
+    if (unsorted % k)
+        cout << (unsorted / k) + 1 << endl;
     else
-    {
-        cout << ceil(((n - sorted) / (float)k)) << endl;
-    }
+
+        cout << unsorted / k << endl;
 }
 
 int32_t main()
