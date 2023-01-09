@@ -15,26 +15,22 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
 
-    int temp, pos = 1;
-    int sorted = 0;
+    int n;
+    cin >> n;
+    vector<string> v;
+    string temp;
 
     for (int i = 0; i < n; i++)
     {
         cin >> temp;
-        if (temp == pos)
-            pos++;
+        v.push_back(temp);
     }
 
-    int unsorted = n - pos + 1;
-
-    if (unsorted % k)
-        cout << (unsorted / k) + 1 << endl;
-    else
-
-        cout << unsorted / k << endl;
+    for (int i = v.size() - 1; i >= 0; i--)
+    {
+        cout << v[i] << endl;
+    }
 }
 
 int32_t main()
@@ -43,7 +39,7 @@ int32_t main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     int tc = 1;
-    cin >> tc;
+    // cin >> tc;
     while (tc--)
     {
         solve();
