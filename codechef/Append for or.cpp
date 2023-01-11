@@ -25,10 +25,20 @@ void solve()
         cin >> temp;
         ans |= temp;
     }
+    for (int i = 0; i < y + 2; i++)
+    {
+        if ((ans | i ) == y)
+        {
+            cout << i << endl;
+            return;
+        }
+    }
 
-    int final_ans = y - ans;
-    ((final_ans & y) == final_ans) ? cout << final_ans : cout << -1;
-    cout << endl;
+    cout << -1 << endl;
+
+    // int final_ans = y - ans;
+    // ((final_ans & y) == final_ans) ? cout << final_ans : cout << -1;
+    // cout << endl;
 }
 
 int32_t main()
