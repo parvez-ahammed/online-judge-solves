@@ -34,10 +34,26 @@ void solve()
         cin >> temp;
 
         s.push(-1 * temp);
-        if ((s.top() * -1) == curren_go && flag == 1)
+
+
+
+        if (flag == 1)
         {
-            s.pop();
-            curren_go++;
+            while (!s.empty())
+            {
+                if ((s.top() * -1) == curren_go )
+                {
+                  //  cout <<  curren_go << endl;
+                    s.pop();
+                    curren_go++;
+
+                }
+                else
+                {
+                    break;
+                }
+            }
+
         }
 
         if (s.size() > k)
@@ -46,14 +62,14 @@ void solve()
         }
     }
 
-    cout << curren_go - 1 << endl;
+    cout << curren_go - 1  << endl;
 }
 
 int32_t main()
 {
 
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+    //ios_base::sync_with_stdio(false);
+    //cin.tie(NULL);
     int tc = 1;
     cin >> tc;
     while (tc--)
