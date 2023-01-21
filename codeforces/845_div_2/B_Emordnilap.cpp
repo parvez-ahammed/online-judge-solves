@@ -18,11 +18,13 @@ void solve()
     int n;
     cin >> n;
     ll const_mod = 1000000007;
-    ll sum = (ll)(n * (n + 1));
-    if (n > 1)
-        cout << sum % const_mod << endl;
-    else
-        cout << 0 << endl;
+    ll fact = 1;
+    for (int i = 1; i <= n; i++)
+    {
+        fact = (fact * i) % const_mod;
+    }
+
+    cout << (((fact * n) % const_mod) * (n - 1)) % const_mod << endl;
 }
 
 int32_t main()
