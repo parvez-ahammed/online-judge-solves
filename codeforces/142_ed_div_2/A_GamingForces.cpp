@@ -19,7 +19,6 @@ void solve()
 
     cin >> n;
 
-    vector<int> v(n + 1, 0);
 
     int count_1 = 0;
 
