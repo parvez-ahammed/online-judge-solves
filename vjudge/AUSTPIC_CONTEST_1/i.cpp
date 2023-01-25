@@ -15,20 +15,23 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 
 void solve()
 {
-    ll a1, a2, a3, a4;
+    ll n, first = 1, second = 1, last = 1;
+    cin >> n;
 
-    cin >> a1 >> a2 >> a3 >> a4;
+    
 
-    ll ans = 0;
-
-    if (a1 == 0)
+    for (int i = 3; i <= n; ++i)
     {
-        cout << 1 << endl;
+
+        if (i == 1)
+            continue;
+        if (i == 2)
+            continue;
+        last = first + second;
+        first = second;
+        second = last;
     }
-    else
-    {
-        cout <<  a1 + 2 * min(a2, a3) + min(a1 + 1, abs(a2 - a3) + a4)<< endl;
-    }
+    cout << last << endl;
 }
 
 int32_t main()
@@ -37,84 +40,10 @@ int32_t main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     int tc = 1;
-    cin >> tc;
+    //cin >> tc;
     while (tc--)
     {
         solve();
     }
     return 0;
 }
-
-// AC CASES
-
-/*
-https://codeforces.com/contest/1792/problem/B
-PROBLEM LINK
-4
-5 0 0 0
-0 0 0 5
-2 5 10 6
-3 0 0 7
-5
-1
-15
-7
-
-1
-1 1 1 1
-
-4
-
-8
-2 3 3 2
-2 3 3 3
-1 1 1 1
-100000000 100000000 100000000 100000000
-800000000 800000000 800000000 800000000
-2 3 6 9
-0 0 0 0
-0 1 1 1
-
-10
-11
-4
-400000000
-3200000000
-11
-0
-1
-
-3
-0 2 2 0
-0 0 0 0
-1 0 0 1
-
-1
-0
-2
-
-
-7
-1 1 0 1
-1 0 1 1
-3 2 0 4
-2 2 0 2
-2 3 0 2
-2 0 3 2
-4 3 0 3
-
-3
-3
-7
-5
-5
-5
-9
-
-1
-4 3 0 3
-
-9
-
-
-*/
