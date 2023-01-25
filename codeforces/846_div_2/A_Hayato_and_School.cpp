@@ -18,6 +18,10 @@ void solve()
     int n;
     cin >> n;
 
+    vector<int> ve;
+    vector<int> vo;
+    vector<int> vb;
+
     int even_count = 0;
 
     int odd_count = 0;
