@@ -22,26 +22,20 @@ void solve(int n)
     }
     int second;
 
-    cout << "Discarded cards:"
-         << " ";
+    cout << "Discarded cards:";
+
     while (q.size() > 1)
     {
-        cout << q.front();
-        if (q.size() > 2)
-
-            cout << ", ";
-        else
-            cout << " ";
+        cout << " " << q.front();
         q.pop();
-
+        second = q.front();
+        q.pop();
         if (!q.empty())
-        {
-            second = q.front();
-            q.push(second);
-            q.pop();
-        }
+            cout << ",";
+        q.push(second);
     }
-    cout << "\nRemaining card: " << second << endl;
+    cout << "\nRemaining card: " << q.front() << endl;
+    q.pop();
 }
 
 int32_t main()
