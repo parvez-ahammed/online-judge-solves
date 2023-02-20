@@ -28,62 +28,52 @@ int32_t main()
         int first = 1;
         while (cin >> first && first != 0)
         {
-            vector<int> v;
+            vector<int> v(n, 0);
             stack<int> q;
             vector<int> departed(n + 1, 0);
-            vector<int> pushed(n + 1, 0);
+            vector<int> entered(n + 1, 0);
 
-            v.push_back(first);
-            int curr_max = 0;
+            v[0] = first;
+            int last_entered = 0;
 
             for (int i = 1; i < n; i++)
-
-            {
-                int temp;
-                cin >> temp;
-                v.push_back(temp);
-            }
+                cin >> v[i];
 
             for (int i = 0; i < v.size(); i++)
             {
 
-                if (departed[v[i]] == 0)
+                if (v[i] > last_entered)
                 {
 
-                    if (v[i] > curr_max)
+                    last_entered = max(v[i], last_entered);
+                    for (int j = 1; j <= last_entered; j++)
                     {
 
-                        curr_max = max(v[i], curr_max);
-                        for (int j = 1; j <= curr_max; j++)
+                        if (entered[j] == 0)
                         {
-
-                            if (pushed[j] == 0)
-                            {
-                                //cout << "HIT " << j << endl;
-                                q.push(j);
-                                pushed[j] = 1;
-
-                                curr_max = max(j, curr_max);
-                            }
+                            // cout << "HIT " << j << endl;
+                            q.push(j);
+                            entered[j] = 1;
+                            last_entered = max(j, last_entered);
                         }
                     }
+                }
 
-                   // cout << q.top() << " " << v[i] << endl;
+                // cout << q.top() << " " << v[i] << endl;
 
-                    if (q.top() != v[i])
-                    {
-                        break;
-                    }
+                if (q.top() != v[i])
+                {
+                    break;
+                }
 
-                    else
-                    {
-                        q.pop();
-                        departed[v[i]] = 1;
-                    }
+                else
+                {
+                    q.pop();
+                    departed[v[i]] = 1;
                 }
             }
 
-            //cout << "SIZE " << q.size() << " ";
+            // cout << "SIZE " << q.size() << " ";
 
             // while (!q.empty())
             // {
