@@ -17,27 +17,42 @@ void solve()
 {
     int n, m;
     cin >> n >> m;
-    vector<int> v(n + 1, -1);
-
-    map<int, int> mp;
-
-    int last = n;
-
-    for (int i = 1; i <= m; i++)
+    vector<int> v;
+    
+    for (int i = 0 ; i < m ; i++)
     {
         int x;
         cin >> x;
-        if (mp[x] == 0)
+        v.push_back(x);
+    }
+
+    map<ll, bool> mark;
+
+    vector<int> ans(n + 1, -1);
+
+    ll curr = n;
+    ll tm = 1;
+
+    for (auto x : v)
+    {
+        // deb2(curr,tm);
+        if (!mark[x] && curr >= 1)
         {
-            v[last] = i;
-            last--;
+            ans[curr] = tm;
+            curr--;
+            tm++;
+            mark[x] = 1;
+            // tm++;
         }
-        mp[x]++;
+        else
+        {
+            tm++;
+        }
     }
 
     for (int i = 1; i <= n; i++)
     {
-        cout << v[i] << " ";
+        cout << ans[i] << " ";
     }
     cout << endl;
 }
@@ -55,5 +70,3 @@ int32_t main()
     }
     return 0;
 }
-
-
