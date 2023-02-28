@@ -13,20 +13,17 @@ using namespace std;
 int fx[] = {+0, +0, +1, -1, -1, +1, -1, +1};
 int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 
-ll nC2(ll n){
-    return n*(n-1)/2;
-}
+#define BIG_MOD 1000000007
 
-void solve()
-{
+void solve() {
 
-    ll n;
+    int n;
     cin >> n;
-
-    for (ll i = 1; i <= n; i++)
-    {
-        cout << nC2(i * i) - 4 * (i - 1) * (i - 2) << endl;
+    ll ans = 1;
+    for (int i = 0; i < n; i++) {
+        ans = (ans * 2) % BIG_MOD;
     }
+    cout << ans << endl;
 }
 
 int32_t main()
@@ -35,7 +32,7 @@ int32_t main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     int tc = 1;
-    // cin >> tc;
+    //cin >> tc;
     while (tc--)
     {
         solve();

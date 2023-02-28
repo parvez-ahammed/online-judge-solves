@@ -12,63 +12,21 @@ using namespace std;
 #define binary_of(x) (bitset<32>(x).to_string().substr(32 - log2(x)))
 int fx[] = {+0, +0, +1, -1, -1, +1, -1, +1};
 int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
+#define BIG_MOD 1000000007
 
 void solve()
 {
-
-    ll n;
+    int n;
     cin >> n;
-
-    ll sum = (n * (n + 1)) >> 1;
-
-    ll half = sum >> 1;
-
-    if (sum & 1)
+    ll mul = 5;
+    int res = 0;
+    while (mul <= n)
     {
-        cout << "NO" << endl;
-        return;
+        res += n / mul;
+        mul *= 5;
     }
 
-    cout << "YES" << endl;
-
-    vector<ll> v (n+1 ,0);
-
-    int count_1 = 0;
-
-    for (int i = v.size()-1 ; i >= 1 ; i--)
-    {
-        if (half - i >= 0)
-        {
-            v[i] = 1;
-            half -= i;
-            count_1++;
-        }
-    }
-
-    cout << count_1 << endl;
-
-    for (int i = 1 ; i <= v.size() ; i++)
-    {
-        if (v[i] == 1)
-        {
-            cout << i << " ";
-        }
-    }
-
-    cout << endl;
-
-    cout << n - count_1 << endl;
-
-    for (int i = 1 ; i <= v.size() ; i++)
-    {
-        if (v[i] == 0)
-        {
-            cout << i << " ";
-        }
-    }
-
-
-    
+    cout << res << endl;
 }
 
 int32_t main()
