@@ -14,24 +14,22 @@ int fx[] = {+0, +0, +1, -1, -1, +1, -1, +1};
 int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 #define BIG_MOD 1000000007
 
-
-
 void solve()
 {
     int n;
     cin >> n;
     string str;
     cin >> str;
-    set<string> distinct;
-    for (int i = 0; i < n - 1; i++)
+    ll cnt = 1;
+    for (int i = 0; i < n && i + 2 < n; i++)
     {
-        if (str[i] != str[i + 1])
-            distinct.insert(str.substr(0, i) + str.substr(i + 2));
+        if (str[i] != str[i + 2])
+        {
+            cnt++;
+        }
     }
 
-     cout << distinct.size() << endl;
-
-   
+    cout << cnt << endl;
 }
 
 int32_t main()
