@@ -19,18 +19,13 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 void solve()
 {
 
-    int a , b;
+    int a, b;
     cin >> a >> b;
-
-    int x = abs(abs(a) - abs(b));
-
-    if (x <= 1 ) cout << abs(a) + abs(b) << endl;
-    else cout << abs(a) + abs(b) + --x << endl;
-  
-    
-
+    a = abs(a);
+    b = abs(b);
+    int x = abs(a - b);
+    cout  <<  (x <= 1 ? a + b : a + b + --x ) << endl;
 }
-
 
 int32_t main()
 {
