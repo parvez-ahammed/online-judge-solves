@@ -18,23 +18,17 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 
 void solve()
 {
-    int n;
-    cin >> n;
 
-    ll x1, y1, x2, y2;
-    cin >> x1 >> y1 >> x2 >> y2;
+    ll n ,k;
 
-    x1--;
-    y1--;
-    x2--;
-    y2--;
+    ll a = 2;
 
-    ll first = min(x1, min(n - 1 - x1, min(y1, n - 1 - y1)));
-    ll second = min(x2, min(n - 1 - x2, min(y2, n - 1 - y2)));
+    cin >> n >> k;
 
-    ll ans = abs(first - second);
+    ll gc = __gcd(a,k);
 
-    cout << ans << endl;
+    if (n % gc == 0) cout << "YES" << endl;
+    else cout << "NO" << endl;
 }
 
 int32_t main()

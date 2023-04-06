@@ -16,25 +16,42 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 #define vi vector<int>
 #define vll vector<ll>
 
+int min_moves_robot(int a, int b) {
+    int gcd = __gcd(a, b);
+    int da = a / gcd, db = b / gcd;
+    int moves = gcd + (da - 1) + (db - 1);
+    return moves;
+}
+
+
 void solve()
 {
-    int n;
-    cin >> n;
 
-    ll x1, y1, x2, y2;
-    cin >> x1 >> y1 >> x2 >> y2;
+    ll a , b;
 
-    x1--;
-    y1--;
-    x2--;
-    y2--;
+    cin >> a >> b;
 
-    ll first = min(x1, min(n - 1 - x1, min(y1, n - 1 - y1)));
-    ll second = min(x2, min(n - 1 - x2, min(y2, n - 1 - y2)));
+    ll c = min (a,b);
+    ll d = max (a,b);
 
-    ll ans = abs(first - second);
+    a = c;
+    b = d;
 
-    cout << ans << endl;
+    if (a == b )
+        cout << 2 * a << endl;
+    else if (a == 1)
+    {
+        cout << 1 + floor(b/2.0) + 1 << endl;
+    }
+
+    else 
+    {
+        cout << ( a / 2.0) + (b/2.0)<< endl;
+    }
+
+   
+
+   
 }
 
 int32_t main()
