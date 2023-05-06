@@ -13,10 +13,9 @@ void solve()
    
 
     for (int i = 0; i < n; i++)
-    {
         cin >> v[i];
-    }
-    ll gcd = v[0];
+    
+    ll gcd = 0;
     vector <ll> v1(n);
     for (int i = 0; i < n/2; i++)
     {
@@ -26,7 +25,7 @@ void solve()
     }
 
 
-    int max_vl = *max_element(v1.begin(), v.end());
+    int max_vl = *max_element(v1.begin(), v1.end());
 
     cout << max_vl << endl;
 
