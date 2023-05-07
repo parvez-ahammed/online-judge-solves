@@ -19,39 +19,36 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 void solve()
 {
 
-    int n, m;
-    cin >> n >> m;
+    int n;
+    cin >> n;
 
-    vector<vector<int>> grid(n + 1);
+    vector<int> v;
 
-    for (int j = 0; j < m; j++)
+    int count = 0;
+
+    while (n > 0)
     {
-        int s, d;
+        int x = n % 10;
+        v.push_back(x);
 
-        cin >> s >> d;
-        grid[s].push_back(d);
-        grid[d].push_back(s);
-    }
-
-    vector<int> v(n + 1, 1);
-
-    for (int i = 1; i <= n; i++)
-    {
-
-        if (grid[i].size() == 0)
-            v[i] = 0;
-        else if (grid[i].size() == 1)
+        if (x != 0)
         {
-            v[i] = 0;
-            v[grid[i][0]] = 0;
-        }    
+           count ++;
+        }
+        n /= 10;
     }
 
-    for (int j = 1; j <= n; j++)
+    cout << count << endl;
+
+    for (int i = 0; i < v.size(); i++)
     {
-        if (v[j] == 1)
-            cout << grid[j].size() << " " << grid[grid[j][0]].size() - 1 << endl;
+        if (v[i] != 0)
+        {
+            cout << v[i] * pow(10, i) << " ";
+        }
     }
+
+    cout << endl;
 }
 
 int32_t main()

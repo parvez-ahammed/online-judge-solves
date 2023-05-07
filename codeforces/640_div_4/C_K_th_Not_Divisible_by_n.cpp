@@ -18,40 +18,28 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 
 void solve()
 {
+    ll n, k;
+    cin >> n >> k;
 
-    int n, m;
-    cin >> n >> m;
-
-    vector<vector<int>> grid(n + 1);
-
-    for (int j = 0; j < m; j++)
+    long long l = 1, r = 1e18, ans = 0;
+    while (l <= r)
     {
-        int s, d;
+        long long mid = (l + r) / 2;
 
-        cin >> s >> d;
-        grid[s].push_back(d);
-        grid[d].push_back(s);
-    }
-
-    vector<int> v(n + 1, 1);
-
-    for (int i = 1; i <= n; i++)
-    {
-
-        if (grid[i].size() == 0)
-            v[i] = 0;
-        else if (grid[i].size() == 1)
+        long long cnt = mid - (mid / n);
+        
+        if (cnt >= k)
         {
-            v[i] = 0;
-            v[grid[i][0]] = 0;
-        }    
+            ans = mid;
+            r = mid - 1;
+        }
+        else
+        {
+            l = mid + 1;
+        }
     }
 
-    for (int j = 1; j <= n; j++)
-    {
-        if (v[j] == 1)
-            cout << grid[j].size() << " " << grid[grid[j][0]].size() - 1 << endl;
-    }
+    cout << ans << endl;
 }
 
 int32_t main()
