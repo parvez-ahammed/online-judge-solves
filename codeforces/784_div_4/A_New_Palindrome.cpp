@@ -18,34 +18,45 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 
 void solve()
 {
-    int n;
+
     string str;
-    cin >> n >> str;
+    cin >> str;
 
-    int red = 0, black = 0;
+    map<char, int> mp;
 
-    for (int i = 0; i < str.size(); i++)
+    for (int i = 0; i < str.size(); ++i)
+        mp[str[i]]++;
+    
+
+    if (str.size() % 2 == 1 )
     {
-        if (str[i] == 'B')
-            black++;
-        if (str[i] == 'R')
-            red++;
-        if (str[i] == 'W')
+        if (mp.size() > 2)
+            cout << "YES" << endl;
+        else if (mp.size() == 2)
         {
-            if (red == 0 && black == 0)
-                continue;
-            if (red >= 1 && black >= 1)
-                red = 0, black = 0;
+        
+            int len = str.size() / 2;
+
+          
+
+            if (mp[str[len]] > 1)
+                cout << "YES" << endl;
             else
-                break;
+                cout << "NO" << endl;
         }
+        else 
+        {
+            cout << "NO" << endl;
+        } 
     }
-
-    if (red == 0 && black == 0 || (red >= 1 && black >= 1))
-
+    else if (str.size() % 2 == 0 && mp.size() > 1)
+    {
         cout << "YES" << endl;
+    }
     else
+    {
         cout << "NO" << endl;
+    }
 }
 
 int32_t main()
