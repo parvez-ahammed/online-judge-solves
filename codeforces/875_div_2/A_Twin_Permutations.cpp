@@ -12,35 +12,44 @@ using namespace std;
 #define binary_of(x) (bitset<32>(x).to_string().substr(32 - log2(x)))
 int fx[] = {+0, +0, +1, -1, -1, +1, -1, +1};
 int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
+#define BIG_MOD 1000000007
+#define vi vector<int>
+#define vll vector<ll>
 
 void solve()
 {
+
     int n;
     cin >> n;
-    string str;
-    cin >> str;
-    vector<int> va(26, 0);
-    vector<int> vb(26, 0);
 
-    for (auto x : str)
-        va[x - 'a']++;
-    int m = str.size() / 2;
+    stack <int> s;
 
-    int ans = -1;
-    for (auto x : str)
+    int x;
+    for (int i = 0; i < n; i++)
     {
-        --va[x - 'a'];
-        ++vb[x - 'a'];
+        
+        cin >> x;
+        s.push(x);
 
-        int cur = 0;
-        for (int i = 0; i < 26; ++i)
+        stack <int> s1 = s;
 
-            cur += min(1, va[i]) + min(1, vb[i]);
+        cout << "INSERTED : " << x << endl;
 
-        ans = max(ans, cur);
+        while (!s1.empty())
+        {
+            cout << s1.top() << " \n";
+            s1.pop();
+        }
+
     }
 
-    cout << ans << endl;
+
+
+
+  
+    
+
+    cout << endl;
 }
 
 int32_t main()
@@ -49,7 +58,7 @@ int32_t main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     int tc = 1;
-    cin >> tc;
+    //cin >> tc;
     while (tc--)
     {
         solve();

@@ -9,38 +9,28 @@ using namespace std;
 #define Reverse(x) reverse(x.begin(), x.end())
 #define sq(x) (x) * (x)
 #define mid(l, r) (l + (r - l) / 2)
-#define binary_of(x) (bitset<32>(x).to_string().substr(32 - log2(x)))
 int fx[] = {+0, +0, +1, -1, -1, +1, -1, +1};
 int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
+#define BIG_MOD 1000000007
+#define vi vector<int>
+#define vll vector<ll>
 
 void solve()
 {
-    int n;
+
+    double n;
     cin >> n;
-    string str;
-    cin >> str;
-    vector<int> va(26, 0);
-    vector<int> vb(26, 0);
 
-    for (auto x : str)
-        va[x - 'a']++;
-    int m = str.size() / 2;
+    ll gold = 0, silver = 0, bronze = 0;
 
-    int ans = -1;
-    for (auto x : str)
-    {
-        --va[x - 'a'];
-        ++vb[x - 'a'];
+    gold = ceil (n / 12);
 
-        int cur = 0;
-        for (int i = 0; i < 26; ++i)
+    n - gold != 0 ? silver = ceil(gold * 1.97) : silver = 0;
 
-            cur += min(1, va[i]) + min(1, vb[i]);
+    n - gold - silver != 0 ? bronze = ceil(gold * 2.97) : bronze = 0;
+    
 
-        ans = max(ans, cur);
-    }
-
-    cout << ans << endl;
+    cout << gold << " " << silver<< " " << bronze << endl;
 }
 
 int32_t main()
@@ -49,7 +39,7 @@ int32_t main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     int tc = 1;
-    cin >> tc;
+    // cin >> tc;
     while (tc--)
     {
         solve();

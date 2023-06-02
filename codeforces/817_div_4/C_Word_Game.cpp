@@ -1,98 +1,81 @@
-#include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
-
-/**-------Shortend Library-------*/
-
-#define vi vector<int>
-#define mii map<int, int>
-
-#define ff first
-#define ss second
-#define all(a) a.begin(), a.end()
+/**----data type----*/
+#define ll long long int
+#define endl "\n"
+#define llu unsigned long long int
 #define Sort(x) sort(x.begin(), x.end())
 #define SortR(x) sort(x.begin(), x.end(), greater<int>())
 #define Reverse(x) reverse(x.begin(), x.end())
-
-#define SortA(ar, s) sort(ar, ar + s)
-#define SortD(ar, s) sort(ar, ar + s, greater<int>())
-
-#define gcd(a, b) __gcd(a, b)
-#define lcm(a, b) (a * (b / gcd(a, b)))
 #define sq(x) (x) * (x)
 #define mid(l, r) (l + (r - l) / 2)
+#define binary_of(x) (bitset<32>(x).to_string().substr(32 - log2(x)))
+int fx[] = {+0, +0, +1, -1, -1, +1, -1, +1};
+int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
+#define BIG_MOD 1000000007
+#define vi vector<int>
+#define vll vector<ll>
 
-#define leftShift(p) (p << 1)
-#define rightShift(p) (p >> 1)
 
-#define min3(a, b, c) min(a, min(b, c))
-#define min4(a, b, c, d) min(a, min(b, min(c, d)))
-#define max3(a, b, c) max(a, max(b, c))
-#define max4(a, b, c, d) max(a, max(b, max(c, d)))
-#define pb(x) push_back(x)
-#define mod 1000000007
-#define precision(x) cout << fixed << setprecision(x)
-
-/**----data type----*/
-#define ll long long int
-#define llu unsigned long long int
-
-/**----Functions to use----**/
-
-ll powerLog(ll base, ll power)
+int checkPersonPoint(map<string , int> toFind , map<string , int> mp1 , map<string , int> mp2)
 {
-    ll res = 1;
-    while (power)
+    int points = 0 ;
+    for(auto it : toFind)
     {
-        if (power % 2)
-        {
-            res *= base;
-            power--;
-        }
-        else
-        {
-            base *= base;
-            power /= 2;
-        }
+        if(mp1[it.first] == 0 && mp2[it.first] == 0)
+            points += 3 ;
+        else if(mp1[it.first] == 1 && mp2[it.first] == 1)    
+            points += 0 ;
+        else  
+            points += 1 ;
+        
     }
-    return res;
+    return points ;
 }
 
-int main()
+
+map <string , int > takeMapInput(int n)
+{
+    map <string , int> mp ;
+    for(int i = 0 ; i < n ; i++)
+    {
+        string s ;
+        cin >> s ;
+        mp[s]++ ;
+    }
+    return mp ;
+}
+
+void solve()
+{
+    int n ;
+    cin >> n ;
+
+    map <string , int> mp1 , mp2 ,mp3 ;
+
+    mp1 = takeMapInput(n) ;
+    mp2 = takeMapInput(n) ;
+    mp3 = takeMapInput(n) ;
+
+    int person1Points = 0 , person2Points = 0 , person3Points = 0 ;
+
+    person1Points = checkPersonPoint(mp1 , mp2 , mp3) ;
+    person2Points = checkPersonPoint(mp2 , mp1 , mp3) ;
+    person3Points = checkPersonPoint(mp3 , mp1 , mp2) ;
+
+    cout << person1Points << " " << person2Points << " " << person3Points << endl ;
+}
+
+int32_t main()
 {
 
-    int tc;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int tc = 1;
     cin >> tc;
-
     while (tc--)
     {
-        int n;
-        cin >> n;
-
-        vector<vector<string>> person;
-        vector<int> points{0, 0, 0};
-
-        for (int i = 0; i < 3; i++)
-        {
-            vector<string> row;
-            string temp;
-            for (int j = 0; j < n; j++)
-            {
-                cin >> temp;
-                row.push_back(temp);
-            }
-            Sort(row);
-            person.push_back(row);
-        }
-
-        for (int i = 0; i < n; i++)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                if (person[i][j] == person[])
-            }
-        }
+        solve();
     }
-
     return 0;
 }
