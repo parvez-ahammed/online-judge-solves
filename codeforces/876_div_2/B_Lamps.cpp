@@ -9,6 +9,7 @@ using namespace std;
 #define Reverse(x) reverse(x.begin(), x.end())
 #define sq(x) (x) * (x)
 #define mid(l, r) (l + (r - l) / 2)
+#define binary_of(x) (bitset<32>(x).to_string().substr(32 - log2(x)))
 int fx[] = {+0, +0, +1, -1, -1, +1, -1, +1};
 int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 #define BIG_MOD 1000000007
@@ -18,17 +19,32 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 void solve()
 {
 
-    double n;
+    int n;
     cin >> n;
+    vector<pair<ll, ll>> v(n);
 
-    ll shouldgetBronze = ceil(n / 2);
-    ll shouldgetSilver = ceil(n / 4);
-    ll shouldgetGold = ceil(n / 12);
+    for (int i = 0; i < n; i++)
+        cin >> v[i].second >> v[i].first;
 
-    
+    Sort(v);
 
-    cout << shouldgetGold << " " << shouldgetSilver  - shouldgetGold<< " " << shouldgetBronze -shouldgetSilver<< endl;
-    
+    map<ll, ll> mp;
+
+    ll sum = 0;
+
+    for (int i = n - 1; i >= 0; i--)
+    {
+        ll a = v[i].second;
+        ll b = v[i].first;
+
+        if (mp[a] < a)
+        {
+            sum += b;
+            mp[a]++;
+        }
+    }
+
+    cout << sum << endl;
 }
 
 int32_t main()
@@ -37,7 +53,7 @@ int32_t main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     int tc = 1;
-    // cin >> tc;
+    cin >> tc;
     while (tc--)
     {
         solve();
