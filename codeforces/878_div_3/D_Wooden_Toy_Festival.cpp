@@ -35,7 +35,7 @@ ll binary(vll v)
 
         for (int k = 0; k < n; k++)
         {
-            if ((v[k] - v[key]) > 2 * mid)
+            if ((v[k] - v[key]) >  mid << 1)
                 key = k, count++;
         }
         if (count >= 3)
