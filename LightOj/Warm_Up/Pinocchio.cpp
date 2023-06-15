@@ -7,21 +7,24 @@ using namespace std;
 #define Reverse(x) reverse(x.begin(), x.end())
 void solve()
 {
+    int n;
+    cin >> n;
+    int lies = 0;
 
-    string s;
-    ll b;
-    cin >> s >> b;
+    int lastStat = 2;
 
-    b = abs(b);
-    if (s[0] == '-')
-        s.erase(s.begin());
-    ll rem = 0;
-    for (int i = 0; i < s.size(); i++)
-        rem = stoll(to_string(rem) + s[i])% b;
-    
+    rep(0, n)
+    {
+        int x;
+        cin >> x;
 
-    rem == 0 ? cout << "divisible" : cout << "not divisible";
-    cout << endl;
+        if (x != lastStat)
+            lies += ceil((x - lastStat) / 5.0);
+
+        lastStat = x;
+    }
+
+    cout << lies << endl;
 }
 
 int32_t main()
