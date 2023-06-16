@@ -15,8 +15,10 @@ VI computeLPSArray(string pat, VI lps)
 
     while (i < pat.size())
     {
-        if (pat[len] == pat[i])++len, lps[i] = len, i++;
-        else len != 0 ? (len = lps[len - 1]) : (lps[i] = len ,i++);
+        if (pat[len] == pat[i])
+            ++len, lps[i] = len, i++;
+        else
+            len != 0 ? (len = lps[len - 1]) : (lps[i] = len, i++);
     }
 
     return lps;
@@ -61,11 +63,9 @@ int KMPSearch(string txt, string pat)
     return count;
 }
 
-
-
 ll hashValue(char c)
 {
-    return ((c - 'a' + 1) * 7) ;
+    return ((c - 'a' + 1) * 7);
 }
 
 int RABIN_KARP(string text, string pat)
@@ -91,7 +91,7 @@ int RABIN_KARP(string text, string pat)
 
         if (currentHash == desiredHash && ans == pat)
             count++;
-        
+
         currentHash -= hashValue(text[i - 1]);
         currentHash += hashValue(text[i + M - 1]);
         ans.erase(ans.begin());
@@ -102,7 +102,27 @@ int RABIN_KARP(string text, string pat)
 
     return count;
 }
+ll NORMAL_FINDING(string text, string pat)
+{
+    int M = pat.size();
+    int N = text.size();
+    int i = 1;
+    int count = 0;
+    string ans = text.substr(i - 1, M);
 
+    while (i <= (N - M + 1))
+    {
+
+        if (ans == pat)
+            count++;
+        ans.erase(ans.begin());
+        ans += text[i + M - 1];
+
+        i++;
+    }
+
+    return count;
+}
 void solve()
 {
 
@@ -110,8 +130,9 @@ void solve()
 
     cin >> a >> b;
 
-    //cout << KMPSearch(a, b) << endl;
-    cout << RABIN_KARP(a, b) << endl;
+    // cout << KMPSearch(a, b) << endl;
+    //cout << RABIN_KARP(a, b) << endl;
+    cout << NORMAL_FINDING(a, b) << endl;
 }
 
 int32_t main()
