@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-using namespace std;
 
 /**
  * Returns the total number of problems.
@@ -8,7 +7,7 @@ using namespace std;
  * @param b denotes the number of problems in the second computer
  */
 int sum(int a, int b) {
-   return a+ b;
+    return a+b;
 }
 
 /**
