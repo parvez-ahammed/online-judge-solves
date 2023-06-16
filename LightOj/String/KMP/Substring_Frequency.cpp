@@ -22,7 +22,7 @@ VI computeLPSArray(string pat, VI lps)
     return lps;
 }
 
-int KMPSearch(string pat, string txt)
+int KMPSearch(string txt, string pat)
 {
     int PAT_SIZE = pat.size();
     int TXT_SIZE = txt.size();
@@ -61,6 +61,48 @@ int KMPSearch(string pat, string txt)
     return count;
 }
 
+
+
+ll hashValue(char c)
+{
+    return ((c - 'a' + 1) * 7) ;
+}
+
+int RABIN_KARP(string text, string pat)
+{
+
+    ll desiredHash = 0, currentHash = 0;
+
+    int M = pat.size();
+    int N = text.size();
+
+    for (int i = 0; i < M; i++)
+        desiredHash += hashValue(pat[i]);
+
+    for (int i = 0; i < M; i++)
+        currentHash += hashValue(text[i]);
+
+    int i = 1;
+
+    int count = 0;
+    string ans = text.substr(i - 1, M);
+    while (i <= (N - M + 1))
+    {
+
+        if (currentHash == desiredHash && ans == pat)
+            count++;
+        
+        currentHash -= hashValue(text[i - 1]);
+        currentHash += hashValue(text[i + M - 1]);
+        ans.erase(ans.begin());
+        ans += text[i + M - 1];
+
+        i++;
+    }
+
+    return count;
+}
+
 void solve()
 {
 
@@ -68,7 +110,8 @@ void solve()
 
     cin >> a >> b;
 
-    cout << KMPSearch(b, a) << endl;
+    //cout << KMPSearch(a, b) << endl;
+    cout << RABIN_KARP(a, b) << endl;
 }
 
 int32_t main()
