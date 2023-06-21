@@ -16,17 +16,15 @@ int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
 #define vi vector<int>
 #define vll vector<ll>
 #define rep(start, x) for (int i = start; i < x; i++)
-
+vi heuristic(2e5 + 5, 0);
+vi leafs(2e5 + 5, 0);
 int dfs(vector<vector<int>> tree, int root)
 {
     int leafCount = 0;
 
     stack<int> s;
-
-    // cout << "FOR " << root << endl;
-
     vector<bool> visited(tree.size());
-
+    visited[root] = true;
 
     s.push(root);
 
@@ -38,44 +36,44 @@ int dfs(vector<vector<int>> tree, int root)
         s.pop();
 
         int currChilds = tree[curr].size();
-        // cout << curr << " " << currChilds << endl;
 
         for (int i = 0; i < currChilds; i++)
         {
-            // cout << " HIT" << endl;
+
             int node = tree[curr][i];
-            if (!visited[node] && node > curr)
+            if ((!visited[node] && heuristic[node] > heuristic[curr]) || (!visited[node] && root == 1))
             {
                 s.push(node);
-                // cout << node << " " << " size " ;
-                if (tree[node].size() == 1 )
+
+                if (tree[node].size() == 1 && node != 1)
+                {
                     leafCount++;
-                
+                    leafs[node] = 1;
+                }
+
+                if (root == 1)
+                    heuristic[node] = heuristic[curr] + 1;
             }
         }
-
-        // cout << endl;
     }
 
     if (leafCount == 0)
         leafCount++;
-    // cout << "END " << endl;
+
     return leafCount;
 }
 
-vi countLeafNodes(vector<vector<int>> tree)
+void countLeafNodes(vector<vector<int>> tree)
 {
     int n = tree.size() - 3;
 
-    vector<int> leafCount(n + 3, 0);
-
-    for (int i = 1; i <= n; ++i)
+    heuristic[1] = 1;
+    rep(1, n + 1)
     {
-        leafCount[i] = dfs(tree, i);
+        if (leafs[i] == 0)
+            leafs[i] = dfs(tree, i);
+        
     }
-    // cout << endl;
-
-    return leafCount;
 }
 
 void solve()
@@ -91,31 +89,16 @@ void solve()
         tree[u].push_back(v);
         tree[v].push_back(u);
     }
+    countLeafNodes(tree);
 
     cin >> q;
-    vector<int> leafCount = countLeafNodes(tree);
-
-    // cout << "HELLO WORLD" << endl;
-    //  for (int i = 1; i <= n; i++)
-    //  {
-    //      for (int j = 0; j < tree[i].size(); j++)
-    //      {
-    //          cout << tree[i][j] << " ";
-    //      }
-    //      cout << endl;
-    //  }
-
-    // std::vector<int> leafCount = countLeafNodes(tree);
-
-    // rep(1, n + 1) cout << leafCount[i] << " ";
-    // cout << endl;
 
     while (q--)
     {
         int x, y;
         cin >> x >> y;
 
-        cout << leafCount[x] * leafCount[y] << endl;
+        cout << leafs[x] * leafs[y] << endl;
     }
 }
 
@@ -128,7 +111,13 @@ int32_t main()
     cin >> tc;
     while (tc--)
     {
+
         solve();
+
+        vi empty(2e5 + 5, 0);
+
+        leafs = empty;
+        heuristic = empty;
     }
     return 0;
 }
