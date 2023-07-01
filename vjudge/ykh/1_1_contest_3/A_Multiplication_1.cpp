@@ -2,11 +2,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
-int main()
+    int main()
 {
-    int n;
-    cin >> n;
-    cout << "25" << endl;
+    int a, b;
+    cin >> a >> b;
+    cout << a * b;
+
     return 0;
 }

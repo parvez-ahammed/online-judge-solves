@@ -4,23 +4,20 @@ using namespace std;
 int main()
 {
     int space, rows;
-
-    
     cin >> rows;
 
-    for(int i = 1, k = 0; i <= rows; ++i, k = 0)
+    for(int i = 1, k = 0; i <= rows; ++i)
     {
         for(space = 1; space <= rows-i; ++space)
-        {
-            cout <<"  ";
-        }
+            cout <<" ";
 
         while(k != 2*i-1)
         {
             cout << "*";
             ++k;
         }
-        cout << endl;
+        k = 0;
+        cout << '\n';
     }    
     return 0;
 }
