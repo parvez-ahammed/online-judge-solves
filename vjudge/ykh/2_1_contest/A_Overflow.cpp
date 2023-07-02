@@ -3,10 +3,8 @@ using namespace std;
 
 int main()
 {
-
-    int a, b;
-
+    long long a;
+    long long b;
     cin >> a >> b;
-
-    cout << (long long) a*b << endl;
+    cout << a * b << endl;
 }
