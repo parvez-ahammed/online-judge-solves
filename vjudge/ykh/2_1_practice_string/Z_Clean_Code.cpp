@@ -2,51 +2,38 @@
 using namespace std;
 int main()
 {
-
-    string s;
-    stack<char> st;
-
-    while (getline(cin, s))
+    string source;
+    bool isStartMultiComment = 0;
+    while (getline(cin, source))
     {
+        bool isNotComment = false;
+        if (source.size() == 0 || source == " ")
+            continue;
 
-        string line = "";
-        for (int i = 0; i < s.size(); i++)
+        for (int i = 0; i < source.size(); i++)
         {
-
-            if (i + 1 < s.size())
+            if (source[i] == '/' && source[i + 1] == '/' && !isStartMultiComment)
+                break;
+            
+            else if (source[i] == '/' && source[i + 1] == '*')
             {
-                if (s[i] == s[i + 1] && s[i] == '/' && st.empty())
-                {
-                    break;
-                }
-
-                if (s[i + 1] == '*' && s[i] == '/')
-                {
-                    st.push('/'), st.push('*');
-                }
+                i++;
+                isStartMultiComment = true;
             }
-
-            if (i - 1 >= 0)
+            else if (source[i] == '*' && source[i + 1] == '/' && isStartMultiComment)
             {
-                if (s[i - 1] == '*' && s[i] == '/' && st.size() >= 2)
-                {
-
-                    while (!st.empty())
-                        st.pop();
-
-                    continue;
-                }
+                i++;
+                isStartMultiComment = false;
             }
-
-            if (st.empty())
+            else if (!isStartMultiComment)
             {
-                line += s[i];
+
+                cout << source[i];
+                isNotComment = true;
             }
         }
 
-        if (line.size() != 0 && count(line.begin(), line.end(), ' ') != line.size())
-        {
-            cout << line << endl;
-        }
+        if (isNotComment && !isStartMultiComment)
+            cout << endl;
     }
 }
