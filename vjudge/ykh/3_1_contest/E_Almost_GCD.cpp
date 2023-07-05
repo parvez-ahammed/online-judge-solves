@@ -16,7 +16,7 @@ int32_t main()
     rep(0, n) cin >> v[i];
     sort(v.begin(), v.end());
 
-    for (int i = 2; i < 500; i++)
+    for (int i = 2; i <= 1000; i++)
     {
         int cnt = 0;
         for (int j = 0; j < n; j++)
