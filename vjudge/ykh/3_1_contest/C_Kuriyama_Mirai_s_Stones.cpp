@@ -4,15 +4,6 @@ using namespace std;
 #define endl "\n"
 #define rep(start, x) for (int i = start; i < x; i++)
 
-ll sumInRange(vector<ll> v, int l, int r)
-{
-    --l, --r;
-    if (l > r)
-        swap(l, r);
-    ll sum = 0;
-    l == 0 ? sum = v[r] : sum = v[r] - v[l - 1];
-    return sum;
-}
 
 int main()
 {
@@ -38,6 +29,9 @@ int main()
     prefD[0] = v[0];
     rep(1, n) prefD[i] = prefD[i - 1] + v[i];
 
+    prefD.insert(prefD.begin(), 0);
+    pref.insert(pref.begin(), 0);
+
     
     cin >> q;
     while (q--)
@@ -45,9 +39,9 @@ int main()
         cin >> type >> l >> r;
 
         if (type == 1)
-            cout << sumInRange(pref, l, r) << endl;
+            cout <<  pref[r] - pref[l - 1] << endl;
         else
-            cout << sumInRange(prefD, l, r) << endl;
+            cout <<  prefD[r] - prefD[l - 1] << endl;
     }
 
     return 0;
