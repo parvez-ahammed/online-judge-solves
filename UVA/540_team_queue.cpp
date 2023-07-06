@@ -21,7 +21,7 @@ void solve(int team_number)
 {
     queue<int> team_q;
     map<int, int> mp;
-    map<int, queue<int>> member_queue;
+    queue<int> member_queue[2000];
 
     for (int i = 1; i <= team_number; i++)
     {
