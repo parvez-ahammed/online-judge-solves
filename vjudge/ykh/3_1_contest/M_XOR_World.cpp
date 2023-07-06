@@ -7,7 +7,7 @@ using namespace std;
 ll xor0toN(ll n)
 {
     ll ans = 0;
-    while (n >= 0 and n % 4 != 3 )
+    while (n >= 0 and n % 4 != 3)
     {
         ans ^= n;
         n--;
@@ -15,9 +15,9 @@ ll xor0toN(ll n)
     return ans;
 }
 
-ll xor_l_to_r(ll l , ll r)
+ll xor_l_to_r(ll l, ll r)
 {
-    return ((  l  > 0 ? xor0toN(l - 1) : 0) ^ xor0toN(r));
+    return ((l > 0 ? xor0toN(l - 1) : 0) ^ xor0toN(r));
 }
 int main()
 {
@@ -25,7 +25,7 @@ int main()
 
     cin >> A >> B;
 
-    cout << xor_l_to_r(A,B) << endl;
+    cout << xor_l_to_r(A, B) << endl;
 
     return 0;
 }

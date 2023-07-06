@@ -12,29 +12,9 @@ int32_t main()
     int n;
     cin >> n;
     vector<int> v(n);
-    rep(0, n) cin >> v[i];
+    int ans = 0;
+    rep(0, n) cin >> v[i] , ans ^= v[i];
 
-    int ans = -1;
-    sort(v.begin(), v.end());
-
-    for (int i = 0; i < v.size() - 1; i++)
-    {
-
-        if (v[i] != 0)
-        {
-
-            if ((v[i] ^ v[i + 1]) == 0)
-                i++;
-            else
-            {
-                ans = i;
-                break;
-            }
-        }
-    }
-    if (ans == -1)
-        ans = n - 1;
-
-    cout << v[ans] << endl;
+    cout << ans << endl;
     return 0;
 }
