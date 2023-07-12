@@ -1,153 +1,94 @@
-#include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
-
-/**-------Shortend Library-------*/
-
-#define vi vector<int>
-#define mii map<int, int>
-
-#define ff first
-#define ss second
-#define all(a) a.begin(), a.end()
+/**----data type----*/
+#define ll long long int
+#define endl "\n"
+#define llu unsigned long long int
 #define Sort(x) sort(x.begin(), x.end())
 #define SortR(x) sort(x.begin(), x.end(), greater<int>())
 #define Reverse(x) reverse(x.begin(), x.end())
-
-#define SortA(ar, s) sort(ar, ar + s)
-#define SortD(ar, s) sort(ar, ar + s, greater<int>())
-
-#define gcd(a, b) __gcd(a, b)
-#define lcm(a, b) (a * (b / gcd(a, b)))
 #define sq(x) (x) * (x)
 #define mid(l, r) (l + (r - l) / 2)
+#define binary_of(x) (bitset<32>(x).to_string().substr(32 - log2(x)))
+int fx[] = {+0, +0, +1, -1, -1, +1, -1, +1};
+int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
+#define BIG_MOD 1000000007
+#define vi vector<int>
+#define vll vector<ll>
+#define rep(start, x) for (int i = start; i < x; i++)
 
-#define leftShift(p) (p << 1)
-#define rightShift(p) (p >> 1)
 
-#define min3(a, b, c) min(a, min(b, c))
-#define min4(a, b, c, d) min(a, min(b, min(c, d)))
-#define max3(a, b, c) max(a, max(b, c))
-#define max4(a, b, c, d) max(a, max(b, max(c, d)))
-#define pb(x) push_back(x)
-#define mod 1000000007
-#define precision(x) cout << fixed << setprecision(x)
-
-/**----data type----*/
-#define ll long long int
-#define llu unsigned long long int
-
-/**----Functions to use----**/
-
-ll powerLog(ll base, ll power)
+void solve()
 {
-    ll res = 1;
-    while (power)
+    int n;
+    cin >> n;
+    vector<string> v(n);
+    rep(0, n) cin >> v[i];
+    int half = (n + 1) / 2;
+    // cout << half << endl;
+
+    n--;
+    int cnt = 0;
+    char visited = '.';
+    for (int i = 0; i < half; i++)
     {
-        if (power % 2)
+        for (int j = 0; j < half; j++)
         {
-            res *= base;
-            power--;
-        }
-        else
-        {
-            base *= base;
-            power /= 2;
+
+            // cout << i << " " << j << " -> ";
+
+            if (v[i][j] != '.')
+            {
+                char first = v[i][j];
+                char second = v[n - i][n - j];
+                // cout << i << j << " " << n - i << n - j << " ";
+                char third, fourth;
+
+                if (i == j)
+                {
+                    third = v[i][n - j];
+                    fourth = v[n - i][j];
+                    // cout << i << n - j << " " << n - i << j;
+                }
+                else
+                {
+
+                    third = v[n - j][i];
+                    fourth = v[j][n - i];
+                    // cout << j << n - i << " " << n - j << i;
+                }
+                // cout << endl;
+
+                int ones = 0;
+                ones += first - '0';
+                ones += second - '0';
+                ones += third - '0';
+                ones += fourth - '0';
+
+                cnt += min(4 - ones, ones);
+
+                v[i][j] = v[n - i][n - j] = visited;
+                (i == j) ? v[i][n - j] = v[n - i][j] = visited : v[j][n - i] = v[n - j][i] = visited;
+
+                // for (int k = 0; k <= n; k++)
+                //     cout << v[k] << endl;
+            }
         }
     }
-    return res;
+
+    cout << cnt << endl;
 }
 
-void show_vector(vector<vector<int>> myVector)
-{
-    cout << "Vector is shown below " << endl;
-    for (int i = 0; i < myVector.size(); i++)
-    {
-        for (int j = 0; j < myVector[i].size(); j++)
-        {
-            cout << setw(6) << myVector[i][j] << " ";
-        }
-        cout << endl;
-    }
-}
-
-int main()
+int32_t main()
 {
 
-    int tc;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int tc = 1;
     cin >> tc;
-
     while (tc--)
     {
-        int sz;
-
-        cin >> sz;
-        vector<int> v[sz];
-        vector<int> tr[sz];
-
-        for (int i = 0; i < sz; i++)
-        {
-            for (int j = 0; j < sz; j++)
-            {
-                char temp;
-                cin >> temp;
-
-                if (temp == '0')
-                    v[i].push_back(0);
-                else
-                {
-                    v[i].push_back(1);
-                }
-            }
-        }
-
-        vector<int> check[sz];
-
-        for (int i = 0; i < sz; i++)
-        {
-            for (int j = 0; j < sz; j++)
-            {
-                check[i].push_back(0);
-            }
-        }
-
-        
-
-        int count = 0;
-
-        
-
-        for (int i = 0; i < sz; i++)
-        {
-            for (int j = 0; j < sz; j++)
-            {
-                if (v[j][i] == v[i][sz - 1 - j])
-                {
-                    check[j][i] = 1;
-                    check[i][sz - 1 - j] = 1;
-                }
-                else
-                {
-                    if (check[i][sz - 1 - j] != 1)
-                    {
-                        v[i][sz - 1 - j] = v[j][i]; 
-                    }
-                    else if (check[j][i] != 1)
-                    {
-                        v[j][i] = v[i][sz - 1 - j];
-                    }
-                    check[i][sz - 1 - j] = 1;
-                    check[j][i] = 1;
-                    count++;
-                }
-            }
-        }
-
-      
-
-        cout << count;
-        cout << endl;
+        solve();
     }
-
     return 0;
 }

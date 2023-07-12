@@ -1,83 +1,72 @@
-#include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
-
-/**-------Shortend Library-------*/
-
-#define vi vector<int>
-#define mii map<int, int>
-
-#define ff first
-#define ss second
-#define all(a) a.begin(), a.end()
+/**----data type----*/
+#define ll long long int
+#define endl "\n"
+#define llu unsigned long long int
 #define Sort(x) sort(x.begin(), x.end())
 #define SortR(x) sort(x.begin(), x.end(), greater<int>())
 #define Reverse(x) reverse(x.begin(), x.end())
-
-#define SortA(ar, s) sort(ar, ar + s)
-#define SortD(ar, s) sort(ar, ar + s, greater<int>())
-
-#define gcd(a, b) __gcd(a, b)
-#define lcm(a, b) (a * (b / gcd(a, b)))
 #define sq(x) (x) * (x)
 #define mid(l, r) (l + (r - l) / 2)
+#define binary_of(x) (bitset<32>(x).to_string().substr(32 - log2(x)))
+int fx[] = {+0, +0, +1, -1, -1, +1, -1, +1};
+int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
+#define BIG_MOD 1000000007
+#define vi vector<int>
+#define vll vector<ll>
+#define rep(start, x) for (int i = start; i < x; i++)
 
-#define leftShift(p) (p << 1)
-#define rightShift(p) (p >> 1)
-
-#define min3(a, b, c) min(a, min(b, c))
-#define min4(a, b, c, d) min(a, min(b, min(c, d)))
-#define max3(a, b, c) max(a, max(b, c))
-#define max4(a, b, c, d) max(a, max(b, max(c, d)))
-#define pb(x) push_back(x)
-#define mod 1000000007
-#define precision(x) cout << fixed << setprecision(x)
-
-/**----data type----*/
-#define ll long long int
-#define llu unsigned long long int
-
-/**----Functions to use----**/
-
-ll powerLog(ll base, ll power)
+void solve()
 {
-    ll res = 1;
-    while (power)
+    int n;
+    cin >> n;
+
+    vector<string> v(n);
+    map<string, int> mp;
+    rep(0, n) cin >> v[i], mp[v[i]]++;
+
+    //cout << "HELLO" << endl;
+
+    rep(0, n)
     {
-        if (power % 2)
+        bool possible = false;
+        //cout << "FOR " << v[i] << endl;
+        for (int j = 1; j <= v[i].size(); j++)
         {
-            res *= base;
-            power--;
+            string main_string = v[i];
+            string first_part = "";
+            string second_part = "";
+
+            for (int k = 0; k < j; k++)
+                first_part += main_string[k];
+            for (int k = j; k < main_string.size(); k++)
+                second_part += main_string[k];
+            //cout << first_part << " " << second_part << endl;
+
+            if (mp.count(first_part) > 0 && mp.count(second_part) > 0)
+            {
+                possible = true;
+                break;
+            }
         }
-        else
-        {
-            base *= base;
-            power /= 2;
-        }
+
+        possible ? cout << 1 : cout << 0;
     }
-    return res;
+
+    cout << endl;
 }
 
-int main()
+int32_t main()
 {
 
-    int tc;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    int tc = 1;
     cin >> tc;
     while (tc--)
     {
-        int times;
-
-        priority_queue<pair<int, pair<string, int>>> v;
-
-        cin >> times;
-        for (int i = 0; i < times; i++)
-        {
-            string str;
-            cin >> str;
-            v.push(make_pair(str.size() * -1, make_pair(str, i)));
-            cout << v.top().second.first << endl;
-        }
+        solve();
     }
-
     return 0;
 }
