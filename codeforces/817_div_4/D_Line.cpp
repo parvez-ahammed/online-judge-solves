@@ -2,6 +2,7 @@
 using namespace std;
 /**----data type----*/
 #define ll long long int
+#define endl "\n"
 #define llu unsigned long long int
 #define Sort(x) sort(x.begin(), x.end())
 #define SortR(x) sort(x.begin(), x.end(), greater<int>())
@@ -11,30 +12,41 @@ using namespace std;
 #define binary_of(x) (bitset<32>(x).to_string().substr(32 - log2(x)))
 int fx[] = {+0, +0, +1, -1, -1, +1, -1, +1};
 int fy[] = {-1, +1, +0, +0, +1, +1, -1, -1};
+#define BIG_MOD 1000000007
+#define vi vector<int>
+#define vll vector<ll>
+#define rep(start, x) for (int i = start; i < x; i++)
 
 void solve()
 {
-    int n;
-    cin >> n;
-    vector<int> v(n +1);
-    map <int,int> mp;
+    int n ;
+    string str;
+    cin >> n >> str;
 
-    for (int i = 1; i <= n; i++)
-        cin >> v[i] , mp[v[i]] = i;
+    ll sum =0;
 
-    int sum = -1;
+    str.insert(str.begin() , '#');
+    
+    priority_queue<int> pq;
 
-    for (auto p : mp)
+    for (ll i = 1 ; i <= n ; i++)
     {
-        for (auto q : mp)
-        {
-            if(__gcd(p.first , q.first) == 1)
-                sum = max(sum , p.second + q.second);
-        }
+        //cout <<line[i];
+        ll maxCanSee = max (n -i , i -1);
+        ll canSee = (str[i] == 'R' ? n-i : i-1);
+        pq.push(maxCanSee-canSee);
+        sum+= canSee;
+
     }
 
+    while(!pq.empty())
+    {
+        sum += pq.top();
+        cout << sum << " ";
+        pq.pop();
+    }
 
-    cout << sum << endl;
+    cout << endl;
 }
 
 int32_t main()
@@ -42,7 +54,6 @@ int32_t main()
 
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-
     int tc = 1;
     cin >> tc;
     while (tc--)
