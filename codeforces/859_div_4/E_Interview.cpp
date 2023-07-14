@@ -1,65 +1,68 @@
-#include <bits/stdc++.h>
+
+#include "bits/stdc++.h"
 using namespace std;
+#define ll long long
+
+const ll sz = 500005;
+
+ll a[sz];
+ll presum[sz];
+
+bool fun(ll lt, ll rt)
+{
+    cout << "? " << rt - lt + 1;
+    for (ll i = lt; i <= rt; i++)
+        cout << " " << i;
+        
+    cout << endl;
+    fflush(stdout);
+    ll sum;
+    cin >> sum;
+    return !(sum == presum[rt] - presum[lt - 1]);
+}
+
+ll binarySearch(ll n)
+{
+    ll left = 1, right = n, mid, ans;
+    while (left <= right)
+    {
+        if (left == right)
+        {
+            return left;
+        }
+        mid = (left + right) / 2;
+        if (fun(left, mid))
+        {
+            ans = left;
+            right = mid;
+        }
+        else
+            left = mid + 1;
+    }
+    return ans;
+}
 
 void solve()
 {
-
-    int n;
+    ll n;
     cin >> n;
-    vector<int> v(n + 1);
-    vector<long long> vp(n + 1);
-
-    for (int i = 1; i <= n; i++)
+    for (ll i = 1; i <= n; i++)
     {
-        cin >> v[i];
-        vp[i] += vp[i - 1] + v[i];
+        cin >> a[i];
+        presum[i] = presum[i - 1] + a[i];
     }
-
-    int l = 1, r = n;
-    int counter = 0;
-    int response;
-    while (r - l > 1)
-    {
-        int mid = (l + r + 1) / 2;
-        cout << "? " << (mid - l) + 1 << " ";
-
-        for (int i = l; i <= l + (mid - l); i++)
-            cout << i << " ";
-        cout << endl;
-
-        cin >> response;
-
-        long long rangeSum = vp[mid] - vp[l - 1];
-
-        if (response == rangeSum)
-            l = mid;
-        else
-            r = mid - 1;
-            
-        counter++;
-        if (counter == 30)
-            return;
-    }
-
-    cout << "? " << 1 << " " << l << endl;
-    cin >> response;
-
-    if (response != v[l])
-    {
-        cout << "! " << l << endl;
-        return;
-    }
-
-    cout << "? " << 1 << " " << r << endl;
-    cin >> response;
-    if (response != v[r])
-        cout << "! " << r << endl;
+    ll ans = binarySearch(n);
+    cout << "! " << ans << endl;
 }
+
 int main()
 {
 
-    int tc;
-    cin >> tc;
-    while (tc--)
+    ll t = 1;
+    cin >> t;
+    while (t--)
+    {
         solve();
+    }
+    return 0;
 }
