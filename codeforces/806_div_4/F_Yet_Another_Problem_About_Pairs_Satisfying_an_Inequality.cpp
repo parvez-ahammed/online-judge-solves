@@ -40,10 +40,11 @@ void solve()
 
     ll cnt = 0;
     int valSize = val.size();
+
     rep(0, validI.size())
     {
        
-        int checkValue = max(validI[i].first, validI[i].second);
+        int checkValue = validI[i].second;
         int start = upper_bound(val.begin()   , val.end()  , checkValue) - val.begin();
 
         cnt += valSize - start;
