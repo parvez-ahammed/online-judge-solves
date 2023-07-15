@@ -1,16 +1,15 @@
 #include <bits/stdc++.h>
 using namespace std;
-
 #define ll long long int
 #define endl "\n"
-
 #define vi vector<int>
-
 #define rep(start, x) for (int i = start; i < x; i++)
 
 vector<vector<int>> tree;
 vector<pair<int, int>> subtreeColor;
 string color;
+
+int cnt = 0;
 
 pair<int, int> dfs(int root)
 {
@@ -23,6 +22,8 @@ pair<int, int> dfs(int root)
         subtreeColor[root].second += p.second;
     }
 
+    cnt += (subtreeColor[root].first == subtreeColor[root].second ? 1 : 0);
+
     return subtreeColor[root];
 }
 
@@ -32,6 +33,7 @@ void solve()
     tree = vector<vector<int>>(5000);
     subtreeColor = vector<pair<int, int>>(5000);
     int x;
+    cnt = 0;
 
     cin >> n;
 
@@ -41,10 +43,6 @@ void solve()
     color.insert(color.begin(), '#');
 
     dfs(1);
-
-    int cnt = 0;
-    for (int i = 1; i <= n; i++)
-        cnt += (subtreeColor[i].first == subtreeColor[i].second ? 1 : 0);
 
     cout << cnt << endl;
 }
