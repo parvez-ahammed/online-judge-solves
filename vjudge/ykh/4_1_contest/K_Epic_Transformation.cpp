@@ -24,35 +24,29 @@ void solve()
     int x;
     map<int, int> mp;
     rep(0, n) cin >> x, mp[x]++;
-    vector<int> v;
+    priority_queue<int> pq;
+
 
     for (auto p : mp)
-        v.push_back(p.second);
-    SortR(v);
-    rep(0, v.size()) cout << v[i] << " ";
+        pq.push(p.second);
 
-    int l = 0, r = v.size() - 1;
-
-    int minV = *min_element(v.begin(), v.end());
-
-    while (v.size() > 1)
+    
+    while(pq.size()> 1)
     {
-        int newMin = INT_MAX;
-        vector<int> newV;
-        rep(0, v.size())
-        {
-            v[i] -= minV, newMin = min(newMin, v[i]);
+        int first = pq.top(); pq.pop();
+        int second = pq.top(); pq.pop();
+        --first;
+        --second;
 
-            if (v[i] != 0)
-                newV.push_back(v[i]);
-        }
-        v = newV;
+        if (first != 0)
+        pq.push(first);
+        if (second != 0)
+        pq.push(second);
+
     }
-
-    int cnt = 0;
-    rep(0, v.size()) cnt += v[i];
-
-    cout << cnt << endl;
+    
+    if (pq.empty()) cout << 0 << endl;
+    else cout << pq.top()<< endl;
 }
 
 int32_t main()
