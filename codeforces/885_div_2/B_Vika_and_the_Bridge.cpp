@@ -28,6 +28,7 @@ void solve()
     rep(1, n + 1)
     {
         cin >> x;
+
         int curr_leap = i - 1 - v[x].first;
 
         v[x].second.push(curr_leap);
@@ -50,7 +51,7 @@ void solve()
 
         x /= 2;
         v[i].second.push(x);
-        
+
         minV = min(minV, v[i].second.top());
     }
 
