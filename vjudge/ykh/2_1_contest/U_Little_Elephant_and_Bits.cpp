@@ -14,22 +14,25 @@ int main()
     while (tc--)
     {
 
-        int n;
-        cin >> n;
-        int ones = __builtin_popcount(n);
-
-        int ans = 0;
-
-        for (int i = 0; i < 1000000; i++)
+        string str;
+        cin >> str;
+        int zero_after_one = -1;
+        for (int i = str.size() - 1; i > 0; i--)
         {
-            if (__builtin_popcount(i) == ones && i != n)
-            {
-                ans = i;
-                break;
-            }
-        }
+            if (str[i] == '0' && str[i - 1] == '1')
 
-        cout << ans << endl;
+                zero_after_one = i;
+                }
+
+        if (zero_after_one != -1)
+
+            str.erase(str.begin() + zero_after_one);
+
+        else
+
+            str.erase(str.end() - 1);
+
+        cout << str << endl;
     }
     return 0;
 }
