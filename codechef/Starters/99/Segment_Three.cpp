@@ -16,15 +16,14 @@ int main()
         for (int i = 0; i < n; i++)
         {
             cin >> days[i];
+            days[i] %= 3;
         }
 
         int result = INT_MAX;
-        for (int i = 0; i < n; i++)
-            days[i] %= 3;
 
         vector<vector<int>> arri = {{1, 1, 1}, {2, 2, 2}, {0, 0, 0}, {0, 1, 2}, {0, 2, 1}, {1, 0, 2}, {1, 2, 0}, {2, 0, 1}, {2, 1, 0}};
 
-        for (int index = 0; index < 9; index++)
+        for (int index = 0; index < arri.size(); index++)
         {
             int count = 0;
             for (int i = 0; i < n; i++)
