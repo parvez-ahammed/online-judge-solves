@@ -3,6 +3,8 @@ using namespace std;
 
 int main()
 {
+    ios_base::sync_with_stdio(0);
+    cin.tie(0);
 
     int tc;
     cin >> tc;
@@ -18,9 +20,11 @@ int main()
         sort(s.begin(), s.end());
         reverse(s.begin(), s.end());
 
+        bool possible = next_permutation(p.begin(), p.end());
+
         cout << n << " ";
-        if (p == s)     p = "BIGGEST";
-        else            next_permutation(p.begin(), p.end());
+        if (!possible)
+            p = "BIGGEST";
 
         cout << p << endl;
     }
