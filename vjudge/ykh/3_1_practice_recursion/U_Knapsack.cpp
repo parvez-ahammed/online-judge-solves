@@ -3,18 +3,23 @@ using namespace std;
 #define ll long long int
 #define endl "\n"
 #define rep(start, x) for (int i = start; i < x; i++)
-vector<pair<double, int>> v;
-int N;
+vector<pair<double, int>> v(30, {0, 0});
+int n, sackSize;
 
-int maxAmount(int curr, int sackSize)
+int maxvalue(int indice, int weight, int value)
 {
-    if (curr == N || sackSize == 0)
+    if (indice == n)
+    {
+        if (weight <= sackSize)
+            return value;
         return 0;
+    }
 
-    cout << curr << " " << v[curr].first * v[curr].second << " " << sackSize << endl;
+    int take = maxvalue(indice + 1, weight, value);
 
-    if (v[curr].second <= sackSize)
-        return v[curr].first * v[curr].second + maxAmount(curr + 1, sackSize - v[curr].second);
+    int notTake = maxvalue(indice + 1, weight + v[indice].first, value + v[indice].second);
+
+    return max(take, notTake);
 }
 int32_t main()
 {
@@ -22,17 +27,11 @@ int32_t main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    int n, sack;
-    cin >> n >> sack;
+    cin >> n >> sackSize;
 
-    v = vector<pair<double, int>>(n);
-    N = n;
+    rep(0, n) cin >> v[i].first >> v[i].second;
 
-    int amount, value;
-    rep(0, n) cin >> amount >> value, v[i] = {value / (amount * 1.0), amount};
-    sort(v.begin(), v.end(), greater<pair<double, int>>());
-
-    cout << maxAmount(0, sack) << endl;
+    cout << maxvalue(0, 0, 0) << endl;
 
     return 0;
 }
