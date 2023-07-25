@@ -9,7 +9,7 @@ int32_t main()
 
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-
+r
     int n;
     unordered_map<int, int> mp;
     vector<int> v;
@@ -21,6 +21,6 @@ int32_t main()
     }
 
     rep(0, v.size()) cout << v[i] << " " << mp[v[i]] << endl;
-
+    
     return 0;
 }
