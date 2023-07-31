@@ -4,9 +4,9 @@ using namespace std;
 #define endl "\n"
 #define rep(start, x) for (int i = start; i < x; i++)
 
-ll findSum(ll n)
+ll findSum(int n)
 {
-    return ((n) * (n + 1)) / 2;
+    return ((n * 1LL) * (n + 1)) / 2;
 }
 
 void solve()
@@ -14,11 +14,11 @@ void solve()
     int n;
     cin >> n;
 
-    int cnt = 0;
+    ll cnt = 0;
 
     int a;
 
-    ll l = 0, r = 0;
+    int l = 0, r = 0;
     for (int i = 1; i <= n; i++)
     {
         cin >> a;
@@ -30,13 +30,12 @@ void solve()
         }
 
         else
+
         {
             r = i;
 
-            ll diff = r - l;
-
             if (l != 0)
-                cnt += findSum(diff);
+                cnt += findSum(r - l);
 
             l = 0;
         }
