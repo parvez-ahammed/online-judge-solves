@@ -1,93 +1,45 @@
-#include <iostream>
 #include <bits/stdc++.h>
 using namespace std;
-
-/**-------Shortend Library-------*/
-
-#define vi vector<int>
-#define mii map<int, int>
-
-#define ff first
-#define ss second
-#define all(a) a.begin(), a.end()
-#define Sort(x) sort(x.begin(), x.end())
-#define SortR(x) sort(x.begin(), x.end(), greater<int>())
-#define Reverse(x) reverse(x.begin(), x.end())
-
-#define SortA(ar, s) sort(ar, ar + s)
-#define SortD(ar, s) sort(ar, ar + s, greater<int>())
-
-#define gcd(a, b) __gcd(a, b)
-#define lcm(a, b) (a * (b / gcd(a, b)))
-#define sq(x) (x) * (x)
-#define mid(l, r) (l + (r - l) / 2)
-
-#define leftShift(p) (p << 1)
-#define rightShift(p) (p >> 1)
-
-#define min3(a, b, c) min(a, min(b, c))
-#define min4(a, b, c, d) min(a, min(b, min(c, d)))
-#define max3(a, b, c) max(a, max(b, c))
-#define max4(a, b, c, d) max(a, max(b, max(c, d)))
-#define pb(x) push_back(x)
-#define mod 1000000007
-#define precision(x) cout << fixed << setprecision(x)
-
-/**----data type----*/
 #define ll long long int
-#define llu unsigned long long int
+#define FAST                          \
+    ios_base::sync_with_stdio(false); \
+    cin.tie(NULL);
+#define endl "\n"
 
-/**----Functions to use----**/
-
-ll powerLog(ll base, ll power)
+void solve()
 {
-    ll res = 1;
-    while (power)
+    int n;
+    cin >> n;
+    vector<int> v(n + 5);
+
+    for (int i = 1; i <= n; i++)
+        cin >> v[i];
+
+    map<int, int> mp;
+    int point = -1;
+
+    for (int i = n; i >= 1; i--)
     {
-        if (power % 2)
-        {
-            res *= base;
-            power--;
-        }
+        if (mp.count(v[i]) == 0)
+            mp[v[i]]++;
+
         else
         {
-            base *= base;
-            power /= 2;
+            point = i;
+            break;
         }
     }
-    return res;
-}
 
-int main()
+    (point == -1) ? cout << 0 << endl : cout << point << endl;
+}
+int32_t main()
 {
 
-    int tc;
+    FAST
+
+        int tc;
     cin >> tc;
     while (tc--)
-    {
-        int n;
-        cin >> n;
-        int temp;
-        set<int> s;
-        int old_set_size = 0;
-        int new_set_size = 1;
-        int holded_i;
-        for (int i = 1; i <= n; i++)
-        {
-            cin >> temp;
-            s.insert(temp);
-            if (old_set_size + 1 == s.size())
-            {
-                old_set_size += 1;
-            }
-            else
-            {
-                holded_i = i;
-            }
-        }
-
-        cout << holded_i << endl;
-    }
-
+        solve();
     return 0;
 }
