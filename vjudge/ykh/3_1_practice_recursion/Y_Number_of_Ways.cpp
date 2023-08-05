@@ -2,7 +2,6 @@
 using namespace std;
 #define ll long long int
 #define endl "\n"
-#define rep(start, x) for (int i = start; i < x; i++)
 int s, e;
 
 int possibleWays(int curr)

@@ -22,7 +22,7 @@ bool is_palindrome(ll x)
     string first = binary_of(x);
     string second = first;
     Reverse(second);
-    return first == second ? true : false;
+    return first == second;
 }
 
 void solve()

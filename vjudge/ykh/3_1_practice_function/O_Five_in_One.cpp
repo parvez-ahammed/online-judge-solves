@@ -58,7 +58,7 @@ int count_divisor(int x)
 {
     int count = 0;
     for (int i = 1; i <= sqrt(x); i++)
-        x % i == 0 ? x / i == i ? count += 1 : count += 2 : count = count;
+        x % i == 0 ? x / i == i ? count += 1 : count += 2 : count += 0;
     return count;
 }
 

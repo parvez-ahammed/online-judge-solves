@@ -23,7 +23,6 @@ void love_recursion(int m, int n)
         love_recursion(m , n-1);
     }
 
-   
 }
 
 void solve()
