@@ -14,7 +14,7 @@ int32_t main()
     cin >> s >> t;
 
     int cnt = 0;
-    rep(0, s.size()) s[i] != t[i] ? cnt++ : cnt = cnt;
+    rep(0, s.size()) cnt+= (s[i] != t[i]);
 
     cout << cnt << endl;
     return 0;
