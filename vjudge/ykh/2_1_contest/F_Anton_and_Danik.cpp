@@ -9,7 +9,7 @@ int main()
     string str;
     cin >> str;
     int ca = count(str.begin(), str.end(), 'A');
-    int cd = count(str.begin(), str.end(), 'D');
+    int cd = str.size() - ca;
     if (ca > cd)
     {
         cout << "Anton" << endl;
