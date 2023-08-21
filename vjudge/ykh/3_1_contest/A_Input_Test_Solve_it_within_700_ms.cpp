@@ -18,7 +18,7 @@ int32_t main()
     rep(0, n)
     {
         cin >> x;
-        x % k == 0 ? count++ : count = count;
+        count += x%k == 0 ;
     }
     cout << count << endl;
     return 0;

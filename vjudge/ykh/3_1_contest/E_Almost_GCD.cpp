@@ -20,7 +20,7 @@ int32_t main()
     {
         int cnt = 0;
         for (int j = 0; j < n; j++)
-            v[j] % i == 0 ? cnt++ : cnt = cnt;
+           cnt+= v[j] % i == 0 ;
 
         if (cnt >= ans)
         {
