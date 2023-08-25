@@ -6,51 +6,58 @@ using namespace std;
     cin.tie(NULL);
 #define endl "\n"
 
+void testOutput(deque<int> a)
+{
+    while (!a.empty()) {
+        cout << a.front() << " ";
+        a.pop_front();
+
+        a.push_back(a.front());
+        a.pop_front();
+    }
+
+    cout << endl;
+}
+
 void solve()
 {
     int n;
     cin >> n;
 
-    int till = (n + 1) / 2;
+    int val = n;
+    deque<int> a;
 
-    deque<int> dq;
+    while (val > 0) {
 
-    for (int i = 1; i <= till; i++)
-        dq.push_back(i);
-
-    for (int i = till + 1; i <= n; i++)
-        dq.push_back(i);
-
-    int turn = 1;
-
-    while (!dq.empty())
-    {
-        if (turn)
-        {
-            cout << dq.front();
-            dq.pop_front();
-        }
-        else
-        {
-            cout << dq.back();
-            dq.pop_back();
+        if (!a.empty()) {
+            int val = a.back();
+            a.pop_back();
+            a.push_front(val);
         }
 
-        if (!dq.empty())
-            cout << " ";
-
-        turn ^= 1;
+        a.push_front(val);
+        --val;
     }
+
+    for (int i = 0; i < n; ++i) {
+
+        cout << a[i];
+        if (i != n - 1)
+            cout << " ";
+    }
+
     cout << endl;
+
+    // testOutput(a);
 }
+
 int32_t main()
 {
 
     FAST;
     int tc;
     cin >> tc;
-    while (tc--)
-    {
+    while (tc--) {
         solve();
     }
     return 0;
