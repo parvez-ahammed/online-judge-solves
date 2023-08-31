@@ -57,23 +57,25 @@ int32_t main()
 
     cout << res << endl;
 
-    int cntA = 0, cntB = 0, cntX = 0;
+    // checker
 
-    for (int i = 0; i < res.size(); i++) {
-        if (res[i] == '0') {
-            cntA++;
-        } else {
-            cntB++;
-        }
+    // int cntA = 0, cntB = 0, cntX = 0;
 
-        if (i > 0) {
-            if (res[i] != res[i - 1]) {
-                cntX++;
-            }
-        }
-    }
+    // for (int i = 0; i < res.size(); i++) {
+    //     if (res[i] == '0') {
+    //         cntA++;
+    //     } else {
+    //         cntB++;
+    //     }
 
-    //cout << cntA << " " << cntB << "  " << cntX << endl;
+    //     if (i > 0) {
+    //         if (res[i] != res[i - 1]) {
+    //             cntX++;
+    //         }
+    //     }
+    // }
+
+    // cout << cntA << " " << cntB << "  " << cntX << endl;
 
     return 0;
 }
