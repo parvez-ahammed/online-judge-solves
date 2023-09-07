@@ -5,37 +5,24 @@ using namespace std;
 
 int binSearchLeft(vector<int>& a, int x)
 {
-    int l = -1; // a[l] <= x
-    int r = a.size(); // a[r] > x
+    int l = 1;
+    int r = a.size() - 1;
 
-    while (r > l + 1) {
-        int m = (l + r) / 2;
+    int ans = 0;
 
-        if (a[m] <= x)
-            l = m;
+    while (l <= r) {
+        int mid = (l + r) / 2;
+
+        if (a[mid] <= x)
+
+            ans = mid, l = mid + 1;
         else
-            r = m;
+            r = mid - 1;
     }
 
-    return l;
+    return ans;
 }
 
-int binSearchRight(vector<int>& a, int x)
-{
-    int l = -1; // a[l] < x
-    int r = a.size(); // a[r] >= x
-
-    while (r > l + 1) {
-        int m = (l + r) / 2;
-
-        if (a[m] < x)
-            l = m;
-        else
-            r = m;
-    }
-
-    return r;
-}
 int32_t main()
 {
 
@@ -45,8 +32,8 @@ int32_t main()
     int n, k;
     cin >> n;
 
-    vector<int> a(n);
-    for (int i = 0; i < n; i++)
+    vector<int> a(n + 1);
+    for (int i = 1; i <= n; i++)
         cin >> a[i];
 
     sort(a.begin(), a.end());
@@ -58,10 +45,7 @@ int32_t main()
 
         cin >> l >> r;
 
-        int left = binSearchLeft(a, l - 1);
-        int right = binSearchRight(a, r + 1);
-
-        cout << right - (left + 1) << " ";
+        cout << binSearchLeft(a, r) - binSearchLeft(a, l - 1) << " ";
     }
     return 0;
 }

@@ -5,19 +5,21 @@ using namespace std;
 
 int binSearch(vector<int>& a, int x)
 {
-    int l = -1; // a[l] < x
-    int r = a.size(); // a[r] >= x
+    int l = 1; // a[l] < x
+    int r = a.size() - 1; // a[r] >= x
 
-    while (r > l + 1) {
-        int m = (l + r) / 2;
+    int ans = r + 1;
 
-        if (a[m] < x)
-            l = m;
+    while (l <= r) {
+        int mid = (l + r) / 2;
+
+        if (a[mid] < x)
+            l = mid + 1;
         else
-            r = m;
+            ans = mid, r = mid - 1;
     }
 
-    return r;
+    return ans;
 }
 int32_t main()
 {
@@ -28,8 +30,8 @@ int32_t main()
     int n, k;
     cin >> n >> k;
 
-    vector<int> a(n);
-    for (int i = 0; i < n; i++)
+    vector<int> a(n + 1);
+    for (int i = 1; i <= n; i++)
         cin >> a[i];
 
     while (k--) {
@@ -38,7 +40,7 @@ int32_t main()
 
         int indice = binSearch(a, x);
 
-        cout << indice + 1 << endl;
+        cout << indice << endl;
     }
     return 0;
 }
