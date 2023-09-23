@@ -1,0 +1,6 @@
+Case #1: DOUBLE 3
+Case #2: DOUBLE 1
+Case #3: DOUBLE 0
+Case #4: DOUBLE 199
+Case #5: Single 100
+Case #6: DOUBLE 1999999999999
