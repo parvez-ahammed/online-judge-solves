@@ -14,16 +14,18 @@ void solve()
     for (int i = 0; i < n; i++) {
         int k;
         cin >> k;
-        ll status = 0;
+        ll mask = 0;
 
         for (int j = 0; j < k; j++) {
             int x;
             cin >> x;
             st.insert(x);
-            status = (status | (1LL << x));
+            mask = (mask | (1LL << x));
         }
 
-        S[i] = status;
+        cout << bitset<7>(mask) << endl;
+
+        S[i] = mask;
     }
 
     int ans = 0;
@@ -31,9 +33,12 @@ void solve()
     for (auto i : st) {
         
         ll state = 0;
+
+
+
         for (int j = 0; j < n; j++) {
 
-            if (!(S[j] & (1LL << i))) {
+            if (! (S[j] & (1LL << i) )  ) {
                 state |= S[j];
             }
         }
