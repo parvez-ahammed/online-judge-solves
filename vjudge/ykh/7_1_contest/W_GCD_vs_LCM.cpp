@@ -2,14 +2,12 @@
 using namespace std;
 #define ll long long int
 #define endl "\n"
-#define rep(start, x) for (int i = start; i < x; i++)
 
 void solve()
 {
-    int a, b;
-    cin >> a >> b;
-    int x = (a & b);
-    cout <<   (a xor x) + (b xor x) << endl;
+    int n;
+    cin >> n;
+    cout << n - 3 << " " << 1 << " " << 1 << " " << 1 << endl;
 }
 int32_t main()
 {
@@ -19,9 +17,10 @@ int32_t main()
 
     int tc;
     cin >> tc;
-    while (tc--)
-    {
-        solve();
+    while (tc--) {
+        int n;
+        cin >> n;
+        cout << n - 3 << " " << 1 << " " << 1 << " " << 1 << endl;
     }
     return 0;
 }
