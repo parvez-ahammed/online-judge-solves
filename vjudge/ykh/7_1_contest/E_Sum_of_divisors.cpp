@@ -3,7 +3,7 @@ using namespace std;
 #define ll long long int
 #define endl "\n"
 
-const int mx = 1e6 + 7;
+const int mx = 1e6 + 5;
 
 vector<int> sumOfDivisors(mx), divisorCount(mx);
 vector<int> kNumber(mx);
@@ -22,14 +22,14 @@ int32_t main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
 
-    for (int i = 1; i <= 1e6; i++) {
-        for (int j = i; j <= 1e6; j += i) {
+    for (int i = 1; i < mx; i++) {
+        for (int j = i; j <= mx; j += i) {
             sumOfDivisors[j] += i;
             divisorCount[j]++;
         }
     }
 
-    for (int i = 0; i <= 1e6; i++) {
+    for (int i = 0; i < mx; i++) {
 
         int val = sumOfDivisors[i];
 
@@ -41,7 +41,7 @@ int32_t main()
         }
     }
 
-    for (int i = 1; i < 1e6 + 2; i++) {
+    for (int i = 1; i < mx; i++) {
         kNumber[i] += kNumber[i - 1];
     }
 
@@ -52,6 +52,5 @@ int32_t main()
         solve();
     }
 
-     cerr << "time taken : " << (float)clock() / CLOCKS_PER_SEC << " secs" << endl;
     return 0;
 }
