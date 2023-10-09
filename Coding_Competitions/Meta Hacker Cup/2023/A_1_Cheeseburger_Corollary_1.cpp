@@ -6,7 +6,7 @@ using namespace std;
 void solve()
 {
 
-    int s, d, k;
+    int s, d, k;A
     cin >> s >> d >> k;
 
     int buns = ((s + d) * 2);
