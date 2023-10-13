@@ -3,23 +3,43 @@ using namespace std;
 #define ll long long int
 #define endl "\n"
 
+vector<int> statues;
+
+void prefix_sum(vector<int>& arr)
+{
+    int n = arr.size();
+    for (int i = 1; i < n; ++i) {
+        arr[i] += arr[i - 1];
+    }
+}
+
 void solve()
 {
 
     int n, q;
     cin >> n >> q;
 
-    vector<int> statues(n + 1, 0);
+    statues.clear();
+    statues.resize(n + 1, 0);
+    int l, r;
 
-    // have to use offline query with difference array technique
+    for (int i = 0; i < q; ++i) {
 
-    while (q--) {
-        int l, r;
         cin >> l >> r;
+        --l, --r;
+        ++statues[l];
+        
+        if (r + 1 < n)
+            statues[r + 1] -= (r - l + 2);
+        if (r + 2 < n)
+            statues[r + 2] += (r - l + 1);
     }
 
-    for (int i = 1; i <= n; i++) {
-        cout << statues[i] << " ";
+    prefix_sum(statues);
+    prefix_sum(statues);
+
+    for (int i = 0; i < n; ++i) {
+        cout << statues[i] << ' ';
     }
     cout << endl;
 }
