@@ -4,42 +4,51 @@ using namespace std;
 #define endl "\n"
 
 int N, K;
-vector<ll> v;
-bool ok(ll mid)
+vector<int> v;
+
+pair<int, ll> ok(ll mid)
 {
-    ll subCnt = 0;
+
+    ll subCnt = 1;
+
+    ll lmx = 0;
 
     ll sum = 0;
+
     for (int i = 1; i <= N; i++) {
+
+        if (v[i] > mid) {
+            return { K+1, v[i] };
+        }
+
         sum += v[i];
 
         if (sum > mid) {
             subCnt++;
-            sum = 0;
-            sum += v[i];
+            sum = v[i];
         }
+        lmx = max(lmx, sum);
     }
 
-    cout << mid << " " << subCnt << endl;
-
-    return subCnt >= K;
+    return { subCnt, lmx };
 }
 
 ll bs()
 {
-    ll l = 1, r = 1e15, ans = 0;
+    ll l = 1, r = 1e18, ans = 0;
 
     while (l <= r) {
         ll mid = (l + r) / 2;
 
-        if (ok(mid)) {
+        auto subs = ok(mid);
 
-            l = mid + 1;
+        if (subs.first == K)
+            ans = subs.second;
 
-        } else {
-
-            ans = mid;
+        if (subs.first <= K) {
             r = mid - 1;
+        } else {
+            l = mid + 1;
         }
     }
     return ans;
@@ -62,6 +71,7 @@ int32_t main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     int tc = 1;
+
     // cin >> tc;
     while (tc--) {
         solve();
