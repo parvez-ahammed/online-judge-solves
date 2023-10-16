@@ -11,7 +11,7 @@ int32_t main()
     int n;
     cin >> n;
     vector<int> v(n + 1), prefix(n + 1), counter(n + 1);
-    
+
     for (int i = 1; i <= n; i++) {
         cin >> v[i];
     }
@@ -26,9 +26,31 @@ int32_t main()
         counter[i] = prefix[i] % n;
     }
 
+    // print the counter vector
+
     for (int i = 1; i <= n; i++) {
         cout << counter[i] << " ";
     }
+    cout << endl;
+
+    map<int, int> mp;
+
+    int cnt = 0;
+
+    for (int i = 1; i <= n; i++) {
+
+        if (counter[i] == 0) {
+            cnt++;
+        } else {
+            if (mp.find(counter[i]) != mp.end()) {
+                cnt += mp[counter[i]];
+            }
+
+            mp[counter[i]]++;
+        }
+    }
+
+    cout << cnt << endl;
 
     return 0;
 }
