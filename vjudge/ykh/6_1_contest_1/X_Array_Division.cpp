@@ -6,19 +6,17 @@ using namespace std;
 int N, K;
 vector<int> v;
 
-pair<int, ll> ok(ll mid)
+bool ok(ll mid)
 {
 
-    ll subCnt = 1;
-
-    ll lmx = 0;
+    int subCnt = 1;
 
     ll sum = 0;
 
     for (int i = 1; i <= N; i++) {
 
         if (v[i] > mid) {
-            return { K+1, v[i] };
+            return false;
         }
 
         sum += v[i];
@@ -27,32 +25,31 @@ pair<int, ll> ok(ll mid)
             subCnt++;
             sum = v[i];
         }
-        lmx = max(lmx, sum);
     }
 
-    return { subCnt, lmx };
+    return (subCnt <= K);
 }
 
 ll bs()
 {
     ll l = 1, r = 1e18, ans = 0;
 
+    
+
     while (l <= r) {
         ll mid = (l + r) / 2;
 
-        auto subs = ok(mid);
-
-        if (subs.first == K)
-            ans = subs.second;
-
-        if (subs.first <= K) {
-            r = mid - 1;
+        if (ok(mid)) {
+            ans = mid;
+            r = mid -1;
         } else {
-            l = mid + 1;
+            l = mid+1;
         }
     }
+
     return ans;
 }
+
 void solve()
 {
     cin >> N >> K;
