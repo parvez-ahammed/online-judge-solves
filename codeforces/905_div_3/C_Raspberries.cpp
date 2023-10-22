@@ -5,163 +5,78 @@ using namespace std;
 
 const int MOD = 1e9 + 7;
 
-map<int, int> mp, freq;
+map<int, int> primes, freq;
 vector<int> v;
 int n, k;
 
-void whenKis5()
+int solvePrime(int vag)
 {
 
     int mn = INT_MAX;
     for (int i = 10; i >= 1; i--)
     {
-        if (freq[i] >= 1)
+        if (freq[i])
         {
-            if (5 - i >= 0)
-                mn = min(mn, 5 - i);
-            if (10 - i >= 0)
-                mn = min(mn, 10 - i);
-        }
-    }
-    cout << mn << endl;
-}
-
-void whenKis2()
-{
-
-    int mn = INT_MAX;
-    for (int i = 10; i >= 1; i--)
-    {
-        if (freq[i] >= 1)
-        {
-            if (10 - i >= 0)
-                mn = min(mn, 10 - i);
-            if (8 - i >= 0)
-                mn = min(mn, 8 - i);
-            if (6 - i >= 0)
-                mn = min(mn, 6 - i);
-            if (4 - i >= 0)
-                mn = min(mn, 4 - i);
-            if (2 - i >= 0)
-                mn = min(mn, 2 - i);
-        }
-    }
-    cout << mn << endl;
-}
-
-void whenKis3()
-{
-
-    int mn = INT_MAX;
-    for (int i = 10; i >= 1; i--)
-    {
-        if (freq[i] >= 1)
-        {
-            if (9 - i >= 0)
-                mn = min(mn, 9 - i);
-            if (6 - i >= 0)
-                mn = min(mn, 6 - i);
-            if (3 - i >= 0)
-                mn = min(mn, 3 - i);
+            for (int j = vag; j <= 10; j += vag)
+                if (j >= i)
+                    mn = min(mn, j - i);
         }
     }
 
     if (mn == INT_MAX)
     {
-        cout << 2 << endl;
-        return;
+        mn = 2;
     }
-    cout << mn << endl;
+    return mn;
 }
 
-bool check()
+void solve4()
 {
-    return (freq[1] >= 1 or freq[3] >= 1 or freq[5] >= 1 or freq[7] >= 1 or freq[9] >= 1);
-}
-
-void whenKis4()
-{
-
-    // cout << "when k is 4"
-    //      << " ";
 
     int mn = INT_MAX;
 
-    if (freq[2] >= 2 or freq[6] >= 2 or freq[10] >= 2 or freq[4] >= 1 or freq[8] >= 1)
-    {
+    if (primes[2] >= 2)
         mn = min(mn, 0);
-    }
 
-    if (freq[2] >= 1)
+    if (primes[2] == 1)
     {
-        if (freq[6] >= 1 or freq[10] >= 1)
+        for (int i = 1; i <= 10; i += 2)
         {
-            mn = min(mn, 0);
+            if (freq[i])
+                mn = min(mn, 1);
         }
-
-        if (check())
-            mn = min(mn, 1);
-    }
-
-    if (freq[6] >= 1)
-    {
-        if (freq[2] >= 1 or freq[10] >= 1)
-        {
-            mn = min(mn, 0);
-        }
-        if (check())
-            mn = min(mn, 1);
-    }
-
-    if (freq[10] >= 1)
-    {
-        if (freq[6] >= 1 or freq[2] >= 1)
-        {
-            mn = min(mn, 0);
-        }
-        if (check())
-            mn = min(mn, 1);
     }
 
     if (freq[3] >= 1 or freq[7] >= 1)
         mn = min(mn, 1);
 
-    if (freq[1] >= 1)
-    {
-        if (freq[9] >= 1)
-        {
-            mn = min(mn, 2);
-        }
-        if (freq[5] >= 1)
-            mn = min(mn, 2);
-    }
-
-    if (freq[9] >= 1)
-    {
-        if (freq[1] >= 1)
-        {
-            mn = min(mn, 2);
-        }
-        if (freq[5] >= 1)
-            mn = min(mn, 2);
-    }
-
-    if (freq[5] >= 1)
-    {
-        if (freq[1] >= 1)
-        {
-            mn = min(mn, 2);
-        }
-        if (freq[9] >= 1)
-            mn = min(mn, 2);
-    }
-
-    if (freq[1] >= 2 or freq[3] >= 2 or freq[5] >= 2 or freq[7] >= 2 or freq[9] >= 2)
-    {
-        mn = min(mn, 2);
-    }
+    mn = min(mn, 2);
 
     cout << mn << endl;
+}
+
+void primeFactor(int num)
+{
+    while (num % 2 == 0)
+    {
+        primes[2]++;
+        num /= 2;
+    }
+
+    for (int j = 3; j <= sqrt(n); j = j + 2)
+    {
+
+        while (num % j == 0)
+        {
+            primes[j]++;
+            num /= j;
+        }
+    }
+
+    if (num > 1)
+    {
+        primes[num]++;
+    }
 }
 void solve()
 {
@@ -169,48 +84,24 @@ void solve()
     cin >> n >> k;
 
     v.resize(n + 1);
-    mp.clear();
+    primes.clear();
     freq.clear();
-
-    ll mul = 1;
 
     for (int i = 1; i <= n; i++)
     {
         cin >> v[i];
-
         freq[v[i]]++;
 
-        mul = (mul * v[i]) % MOD;
-
-        // cout << v[i] % k << " ";
-
-        // do prime factorization of v[i]
+        primeFactor(v[i]);
     }
 
-    sort(v.begin(), v.end());
-
-    if (k == 5)
-    {
-        whenKis5();
-        return;
-    }
-    if (k == 2)
-    {
-        whenKis2();
-        return;
-    }
-    if (k == 3)
-    {
-        whenKis3();
-        return;
-    }
     if (k == 4)
     {
-        whenKis4();
+        solve4();
         return;
     }
 
-    cout << "OTHER CASE" << endl;
+    cout << (primes[k] ? 0 : solvePrime(k)) << endl;
 }
 int32_t main()
 {

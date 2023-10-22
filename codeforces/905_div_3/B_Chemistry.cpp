@@ -21,8 +21,6 @@ void solve()
     int len = s.size();
     int desired = k;
 
-  
-
     for (auto x : mp)
     {
         if (desired == 0)
@@ -38,7 +36,6 @@ void solve()
             }
         }
     }
-
 
     for (auto x : mp)
     {
@@ -75,7 +72,7 @@ void solve()
         }
     }
 
-        int oddCount = 0, evenCount = 0;
+    int oddCount = 0, evenCount = 0;
 
     for (auto x : mp)
     {
@@ -92,10 +89,6 @@ void solve()
             }
         }
     }
-
-   
-
-    
 
     if (oddCount <= 1)
     {
