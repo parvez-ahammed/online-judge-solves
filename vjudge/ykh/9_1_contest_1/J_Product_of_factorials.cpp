@@ -1,14 +1,16 @@
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long int
-#define ull unsigned long long int 
 #define endl "\n"
 
-ull B, P, M;
+const long long mod = 109546051211;
+const int N = 10000000;
 
-ull mulmod(ull x, ull y, ull mod)
-{ 
-    ull ans = 0;
+ll fact[N];
+
+ll mulmod(ll x, ll y, ll mod)
+{ // O(log y)
+    ll ans = 0;
     while (y > 0) {
         if (y & 1) {
             ans = (ans + x) % mod;
@@ -18,23 +20,23 @@ ull mulmod(ull x, ull y, ull mod)
     }
     return ans;
 }
-ull power(ull x, ull n, ull mod)
-{ 
-    ull ans = 1 % mod;
-    while (n > 0) {
-        if (n & 1) {
-            ans = mulmod(ans, x, mod);
-        }
-        x = mulmod(x, x, mod);
-        n >>= 1;
-    }
-    return ans;
-}
 
 void solve()
-{   
-    
-    cout << power(B, P, M) << endl;
+{
+    int n;
+    cin >> n;
+    fact[0] = 1;
+    for (int i = 1; i < N; i++) {
+        fact[i] = fact[i - 1] * i % mod;
+    }
+
+    ll ans = 1;
+
+    for (int i = 1; i <= n; i++) {
+        ans = mulmod(ans, fact[i], mod);
+    }
+
+    cout << ans << endl;
 }
 int32_t main()
 {
@@ -43,9 +45,7 @@ int32_t main()
     cin.tie(NULL);
     int tc = 1;
     // cin >> tc;
-
-    while (cin >> B >> P >> M)
-    {
+    while (tc--) {
         solve();
     }
     return 0;
