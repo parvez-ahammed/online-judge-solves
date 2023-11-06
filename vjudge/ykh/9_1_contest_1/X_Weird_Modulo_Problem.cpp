@@ -10,16 +10,13 @@ void solve()
 
     vector<int> a(n + 1);
 
-    for (int i = 1; i <= n; i++)
-        cin >> a[i];
-
-    
-
-    int x = a[1];
+    cout 
 
     for (int i = 2; i <= n; i++) {
         x = x % a[i];
     }
+
+    // (0 ≤ N ≤ 20000000 , (0 ≤ M ≤ N) )
 
     cout << x << endl;
 }
