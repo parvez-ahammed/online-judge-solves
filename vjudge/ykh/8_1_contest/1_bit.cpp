@@ -2,8 +2,13 @@
 using namespace std;
 #define ll long long int
 #define endl "\n"
-#define CheckBit(x, k) ((x >> k) & 1)
 
+#define leftShift(p) (p << 1)
+#define rightShift(p) (p >> 1)
+#define SetBit(x, k) (x |= (1LL << k))
+#define ClearBit(x, k) (x &= ~(1LL << k))
+#define ToggleBit(x, k) (x ^= (1LL << k))
+#define CheckBit(x, k) ((x >> k) & 1)
 void solve()
 {
 
@@ -23,8 +28,6 @@ void solve()
     for (int i = 0; i < m; i++) {
         int cnt = 0;
 
-
-
         for (int j = 0; j < 21; j++) {
             if (CheckBit(a[i], j) != CheckBit(fred, j)) {
                 cnt++;
@@ -33,8 +36,6 @@ void solve()
 
         friends += (cnt <= k);
     }
-
-   
 
     cout << friends << endl;
 }
