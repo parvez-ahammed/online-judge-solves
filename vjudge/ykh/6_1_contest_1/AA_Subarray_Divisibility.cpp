@@ -26,13 +26,6 @@ int32_t main()
         counter[i] = prefix[i] % n;
     }
 
-    // print the counter vector
-
-    for (int i = 1; i <= n; i++) {
-        cout << counter[i] << " ";
-    }
-    cout << endl;
-
     map<int, int> mp;
 
     int cnt = 0;
