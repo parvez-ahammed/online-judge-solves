@@ -8,17 +8,16 @@ void solve()
     int n;
     cin >> n;
 
-    vector<int> a(n + 1);
+    vector<int> a(n );
 
-    cout 
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
 
-    for (int i = 2; i <= n; i++) {
-        x = x % a[i];
-    }
+    sort (a.begin(), a.end());
 
-    // (0 ≤ N ≤ 20000000 , (0 ≤ M ≤ N) )
+    cout << a[0] << " ";    
 
-    cout << x << endl;
+    
 }
 int32_t main()
 {
