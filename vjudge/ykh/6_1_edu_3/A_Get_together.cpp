@@ -1,59 +1,50 @@
 #include <bits/stdc++.h>
-using namespace 
-std;
+using namespace std;
 #define ll long long int
 #define endl "\n"
 int N;
 vector<pair<int, int>> person;
 
-double timeReqiredToMeet(double meetPos)
+double ok(double mid)
 {
 
-    double maxTime = 0;
+    double left = -1e9 * 1.0;
+    double right = 1e9 * 1.0;
 
     for (int i = 0; i < N; i++) {
-        double distance = abs(meetPos - person[i].first);
-        double time = (distance * 1.0) / person[i].second;
+        double l = person[i].first - (mid * person[i].second);
+        double r = person[i].first + (mid * person[i].second);
 
-        maxTime = max(maxTime, time);
+        left = max(left, l);
+        right = min(right, r);
+
+        if (left > right) {
+            return false;
+        }
     }
 
-    return maxTime;
-}
-
-double ok(double meetPos)
-{
-
-    double time = timeReqiredToMeet(meetPos);
-
-
-    return time;
-
-   
+    return true;
 }
 
 double binSearch()
 {
-    double time = 0;
 
     int iterations = 100;
 
-    double l = 2e9 * -1.0;
-
-    double r = 2e9;
+    double l = 0, ans = 0, r = 1e9;
 
     while (iterations--) {
-        double meetPos = l + (r - l) / 2.0;
+        double mid =(l + r) / 2.0;
 
-        if (ok(meetPos)) {
-
-            r = meetPos;
+        if (ok(mid)) {
+            ans = mid;
+            r = mid;
         } else {
-            l = meetPos;
+            l = mid;
         }
     }
 
-    return time;
+    return ans;
 }
 int32_t main()
 {
@@ -69,7 +60,7 @@ int32_t main()
 
     double ans = binSearch();
 
-    cout << ok(ans) << endl;
+    cout << fixed << setprecision(10)<< ans << endl;
 
     return 0;
 }
