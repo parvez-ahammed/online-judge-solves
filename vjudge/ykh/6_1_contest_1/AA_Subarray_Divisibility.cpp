@@ -10,37 +10,25 @@ int32_t main()
 
     int n;
     cin >> n;
-    vector<int> v(n + 1), prefix(n + 1), counter(n + 1);
+    vector<int> v(n + 1), prefix(n + 1);
 
     for (int i = 1; i <= n; i++) {
         cin >> v[i];
     }
 
-    prefix[0] = v[0];
-
     for (int i = 1; i <= n; i++) {
-        prefix[i] = prefix[i - 1] + v[i];
-    }
+        prefix[i] = (prefix[i - 1] + v[i] ) % n;
+        prefix[i] = (prefix[i] + n) % n;
 
-    for (int i = 1; i <= n; i++) {
-        counter[i] = prefix[i] % n;
     }
 
     map<int, int> mp;
-
-    int cnt = 0;
+    ll cnt = 0;
+    mp[0]++;
 
     for (int i = 1; i <= n; i++) {
-
-        if (counter[i] == 0) {
-            cnt++;
-        } else {
-            if (mp.find(counter[i]) != mp.end()) {
-                cnt += mp[counter[i]];
-            }
-
-            mp[counter[i]]++;
-        }
+        cnt += mp[prefix[i]];
+        mp[prefix[i]]++;
     }
 
     cout << cnt << endl;
