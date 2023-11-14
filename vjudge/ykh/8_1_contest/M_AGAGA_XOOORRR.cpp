@@ -17,16 +17,16 @@ void solve()
     for (int i = 0; i < n; i++) {
 
         int ans = 0;
-        int cnt = 0;
+        
         for (int j = 0; j < n; j++) {
 
             if (v[j] != v[i])
                 ans ^= v[j];
 
-            cnt += (v[j] == v[i]);
+        
         }
 
-        if (ans == v[i] or cnt == n) {
+        if (ans == v[i] ) {
             cout << "YES" << endl;
             return;
         }
