@@ -2,37 +2,40 @@
 using namespace std;
 #define ll long long int
 
-bool query(int l, int r)
+int query(int l, int r)
 {
-    cout << "? " << l << " " << r << endl;
+    if (l >= r)
+        return -1;
+    cout << "? " << l + 1 << " " << r + 1 << endl;
     int x;
     cin >> x;
 
-    return x <= r;
+    return x - 1;
 }
 
 void binarySearch(int n)
 {
 
-    int l = 1, r = n, ans = 0;
+    int l = 0, r = n, ans = 0;
 
-    while (l < r) {
+    while (r - l > 1) {
+        int m = (l + r) / 2;
+        int smax = query(l, r - 1);
 
-        int mid = (l + r) / 2;
+        bool smaxSmallerThanM = (smax < m);
 
-        // ami guess korechi je mid tai amar maximum Number
+        int res = (smaxSmallerThanM ? query(l, m - 1) : query(m, r - 1));
 
-        // secIndice <= mid hole amar max ta left side e ache
+        if (smaxSmallerThanM) {
 
-        if (query(l, mid)) {
-            ans = mid;
-            r = mid - 1;
+            (res == smax ? r = m : l = m);
         } else {
-            l = mid + 1;
+
+            (res == smax ? l = m : r = m);
         }
     }
 
-    cout << "! " << ans << endl;
+    cout << "! " << r << endl;
 }
 
 void solve()
