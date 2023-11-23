@@ -23,15 +23,17 @@ void solve()
     for (int i = 0; i < m; i++) {
         int cnt = 0;
 
+        int diffCnt = __builtin_popcount(a[i] ^ fred);
 
 
-        for (int j = 0; j < 21; j++) {
-            if (CheckBit(a[i], j) != CheckBit(fred, j)) {
-                cnt++;
-            }
-        }
 
-        friends += (cnt <= k);
+        // for (int j = 0; j < 21; j++) {
+        //     if (CheckBit(a[i], j) != CheckBit(fred, j)) {
+        //         cnt++;
+        //     }
+        // }
+
+        friends += (diffCnt <= k);
     }
 
    

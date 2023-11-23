@@ -12,24 +12,20 @@ void solve()
 
     int arr[n];
 
+    map<int, int> mp;
 
-    map <int,int> mp ;
     for (int i = 0; i < n; i++) {
         cin >> arr[i];
-
-        for (int j = 0; j < 31; j++) {
-            if (CheckBit(arr[i], j)) {
-                mp[j]++;
-            }
-        }
     }
-
+    
     int ans = 0;
-
-    for (int i = 0 ; i < 31 ; i++) {
-        if (mp[i] == n) {
-            ans += (1 << i);
+    for (int j = 0; j < 31; j++) {
+        int cnt = 0;
+        for (int i = 0; i < n; i++) {
+            cnt += CheckBit(arr[i], j);
         }
+
+        ans += (cnt == n ? (1 << j) : 0);
     }
 
     cout << ans << endl;
