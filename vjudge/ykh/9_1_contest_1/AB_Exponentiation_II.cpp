@@ -6,7 +6,8 @@ using namespace std;
 const int mod = 1e9 + 7;
 
 int power(ll x, ll n, ll mod)
-{ // O(log n)
+{ 
+    // O(log n)
     int ans = 1 % mod;
     while (n > 0) {
         if (n & 1) {
