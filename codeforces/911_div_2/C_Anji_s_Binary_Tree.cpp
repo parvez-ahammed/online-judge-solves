@@ -11,28 +11,26 @@ vector<int> COST(N, 0);
 string str;
 void dfs(int node)
 {
-    
+    cout << node << " " << COST[node] << endl;
     if (v[node].first == 0 && v[node].second == 0) {
         return;
     }
 
     if (v[node].first != 0) {
 
-        COST[v[node].first] = COST[node];
+        COST[v[node].first] = COST[node]; // taking the parents cost
+        // movin to left child
+        COST[v[node].first] += (str[node] != 'L');
 
-        if (str[node] != 'L') {
-            COST[v[node].first]++;
-        }
         dfs(v[node].first);
     }
 
     if (v[node].second != 0) {
 
         COST[v[node].second] = COST[node];
+        // moving to right child
+        COST[v[node].second] += (str[node] != 'R');
 
-        if (str[node] != 'R') {
-            COST[v[node].second]++;
-        }
         dfs(v[node].second);
     }
 }
