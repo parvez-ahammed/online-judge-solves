@@ -5,65 +5,39 @@ using namespace std;
 
 void solve()
 {
-    string a, s;
+
+    ll a, s;
     cin >> a >> s;
-
     string b = "";
-
-    int sz = a.size();
-
-
-    deque<int> dq;
-    int curr = s.size() - 1;
-
-    for (int i = sz - 1; i >= 0; i--) {
-
-        if (curr < 0) {
-            cout << -1 << endl;
-            return;
-        }
-
-        int uporer = a[i] - '0';
-        string temp = "";
-        temp += s[curr];
-
-        int niche = stoi(temp);
-
-        if (uporer > niche) {
-            curr--;
-            if (curr < 0) {
+    while (s) {
+        int x = a % 10;
+        int y = s % 10;
+        if (x <= y)
+            b += to_string(y - x);
+        else {
+            s /= 10;
+            y += 10 * (s % 10);
+            if (x < y and y >= 10 and y <= 19)
+                b += to_string(y - x);
+            else {
                 cout << -1 << endl;
                 return;
             }
-            temp += s[curr];
-            reverse(temp.begin(), temp.end());
         }
 
-        niche = stoi(temp);
-
-        int majher = stoi(temp) - uporer;
-
-        if (majher < 0 or majher > 9) {
-            cout << -1 << endl;
-            return;
-        }
-
-        dq.push_front(majher);
-        curr--;
+        
+        a /= 10;
+        s /= 10;
     }
+    if (a)
+        cout << -1 << endl;
+    else {
 
-    for (int i = curr; i >= 0; i--) {
-        dq.push_front(s[i] - '0');
+        while(b.back() == '0')
+            b.pop_back();
+        reverse(b.begin(), b.end());
+        cout << b << endl;
     }
-
-    string temp = "";
-
-    for (auto x : dq) {
-
-        temp += to_string(x);
-    }
-
-    cout << stoi(temp) << endl;
 }
 int32_t main()
 {
