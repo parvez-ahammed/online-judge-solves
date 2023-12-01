@@ -25,11 +25,10 @@ struct position {
 vector<int> substrPosition(string str, string sub_str)
 {
     vector<int> v;
-    bool flag = false;
+
     for (int i = 0; i < str.length(); i++) {
         if (str.substr(i, sub_str.length()) == sub_str) {
             v.push_back(i);
-            flag = true;
         }
     }
     return v;
@@ -97,9 +96,9 @@ int processString(string s)
     string val = "0";
 
     position digitPos = getDigitPosition(s);
-    position stringPos ;
+    position stringPos;
     // Commment out the line below to get the first puzzle Accepted
-    stringPos= getStringPositon(s);
+    stringPos = getStringPositon(s);
 
     val = generateString(digitPos, stringPos);
 
