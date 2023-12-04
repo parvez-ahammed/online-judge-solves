@@ -6,26 +6,21 @@ void solve()
 {
 
     int n;
-    cin >> n;
-
     string s;
-    cin >> s;
+    cin >> n >> s;
 
     int cnt_1 = 0, cnt_0 = 0;
 
     for (int i = 0; i < n; i++) {
-        if (s[i] == '1')
-            cnt_1++;
-        else
-            cnt_0++;
+        cnt_1 += (s[i] == '1');
     }
+    cnt_0 = n - cnt_1;
 
     bool possible = false;
     for (int i = 0; i < n - 1; i++) {
 
         if (s[i] != s[i + 1]) {
             possible = true;
-
             break;
         }
     }
