@@ -5,40 +5,27 @@ using namespace std;
 
 vector<pair<int, int>> v;
 
-
 bool ok(int mid)
 {
-    int pos = 0;
-    //cout << mid << endl;
-    v[0].second =  mid;
+    int minPos = -mid, maxPos = mid;
+    int n = v.size();
+    for (int i = 0; i < n; i++) {
 
-    for (int i = 1; i < v.size(); i++) {
-        v[i].second = v[i].first+ mid;
+        minPos = max(minPos, v[i].first);
+        maxPos = min(maxPos, v[i].second);
+
+        if (minPos > maxPos)
+            return false;
+            
+        minPos -= mid;
+        maxPos += mid;
     }
-    for (int i = 1; i < v.size(); i++)
-
-    {
-        if (v[i].first > v[i - 1].second) {
-            if (v[i].first - v[i - 1].second > mid) {
-                //cout << "RIGHT" << endl;
-                return false;
-            }
-        }
-        if (v[i].second < v[i - 1].first) {
-            if (v[i - 1].first - v[i].second > mid) {
-                //cout << v[i].second << " " << v[i - 1].first << endl;
-               // cout << "LEFT" << endl;
-                return false;
-            }
-        }
-    }
-
     return true;
 }
 
 int binarySearch()
 {
-    int l = 0, r = 20, ans = 0;
+    int l = 0, r = 1e9 + 5, ans = 0;
 
     while (l <= r) {
         int mid = (l + r) / 2;
