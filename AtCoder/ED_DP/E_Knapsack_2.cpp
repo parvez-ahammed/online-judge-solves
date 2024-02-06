@@ -2,8 +2,8 @@
 using namespace std;
 #define ll long long int
 #define endl "\n"
-const int MAXN = 105;
-const int MAXW_ = 1e5 + 5;
+const short MAXN = 105;
+const int MAXW_ = 1e9 + 5;
 
 int W[MAXN], V[MAXN];
 
@@ -11,7 +11,7 @@ ll dp[MAXN][MAXW_];
 
 int n, capacity;
 
-ll getMaxProfit(int at = 1, int taken = 0)
+ll getMaxProfit(int at = 0, int taken = 0)
 {
 
     if (at > n)
@@ -25,16 +25,10 @@ ll getMaxProfit(int at = 1, int taken = 0)
     ll included = 0;
 
     if (taken + W[at] <= capacity) {
-         //cout << "AT I : " << at << " I : " << included << " E : " << excluded << " TA : " << taken << endl;
         included = V[at] + getMaxProfit(at + 1, taken + W[at]);
     }
-
-    //cout << "AT E : " << at << " I : " << included << " E : " << excluded << " TA : " << taken << endl;
-    //cout << endl;
     return dp[at][taken] = max(excluded, included);
 }
-
-
 void solve()
 {
 
