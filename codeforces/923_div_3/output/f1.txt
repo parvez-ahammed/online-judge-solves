@@ -1,0 +1,13 @@
+#include <stdio.h>
+int main(){
+    for(int i= 0; i <5 , i++){
+        printf("%d\n",i);
+    }
+    for(int j =10; j >0;j--){
+        printf("%d\n",j);
+    }
+    for(;;){
+        printf("CSE4130")
+    }
+
+}
