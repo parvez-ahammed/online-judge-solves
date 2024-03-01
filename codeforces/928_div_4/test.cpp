@@ -5,44 +5,23 @@ using namespace std;
 void solve()
 {
 
-    int n;
-    cin >> n;
-    ll sum = 0;
+     a = 4, b = 2;
 
-    vector<int> a(n);
-    vector<int> b(n, 0);
-    for (int i = 0; i < n; i++) {
-        cin >> a[i];
+    if (a < 5)
+        do {
+            if (a == b) {
 
-        if (a[i] > 0)
-            sum += a[i];
-
-        if (a[i] < 0)
-            b[i] = 1;
-    }
-    int move = 0;
-
-    int i = 0;
-    while (a[i] < 0 and i < n) {
-        i++;
-    }
-
-    --n;
-    while(a[n] < 0 and n >= 0){
-        n--;
-    }
-    
-    for (; i <= n; i++) {
-
-        if (b[i] == 1) {
-            while (b[i] == 1 and i < n) {
-                i++;
+                b = a + b;
+                func1(a, b);
             }
-            move++;
-        }
+
+        } while (a--);
+    switch(b){
+        case 1: a--;
+        case 2: b = - a*3+5; break; 
+        default: a = 0; 
     }
 
-    cout << sum << " " << move << endl;
 }
 int32_t main()
 {
@@ -51,8 +30,7 @@ int32_t main()
     cin.tie(NULL);
     int tc = 1;
     cin >> tc;
-    for (int t = 1; t <= tc; t++) {
-        cout << "Case " << t << ": ";
+    while (tc--) {
         solve();
     }
     return 0;
