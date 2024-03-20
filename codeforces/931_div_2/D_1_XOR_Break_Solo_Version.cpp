@@ -41,10 +41,10 @@ int32_t main()
 
     // take file input output
 
-    // #ifndef ONLINE_JUDGE
-         freopen("input.txt", "r", stdin);
-         freopen("output.txt", "w", stdout);
-    // #endif
+   
+         freopen("input.txt", "r", stdin );
+         freopen("output.txt", "w", stdout );
+    
 
 
     int tc = 1;
