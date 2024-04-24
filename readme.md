@@ -1,6 +1,6 @@
 ## Competitive Programming
 
-This repo contains my solutions to problems of different online judgjes and competitions.
+This repo contains my solutions to problems of different online judges and competitions.
 
 [![wakatime](https://wakatime.com/badge/user/0a093f9a-51c9-4892-8ac1-1c52ad5136a8/project/741087d2-8403-4b0f-bbc7-e6eabad93fef.svg)](https://wakatime.com/badge/user/0a093f9a-51c9-4892-8ac1-1c52ad5136a8/project/741087d2-8403-4b0f-bbc7-e6eabad93fef)
 
