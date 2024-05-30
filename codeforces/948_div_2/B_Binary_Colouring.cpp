@@ -18,7 +18,7 @@ void solve()
         if ((temp -1 ) % 4 == 0) {
             v[k] = 1;
             contrib -=2;
-        } else if (temp&1) {
+        } else if (temp%2) {
             v[k] = -1;
             contrib += 1;
         }
